@@ -1,0 +1,17 @@
+package %PACKAGE%;
+
+public class %CLASS% {
+
+    private static %CLASS% instance;
+
+    private %CLASS% {}
+
+    public static %CLASS% getInstance(){
+        if(instance == null){
+            instance = new %CLASS%();
+        }
+        return instance;
+    }
+
+    %_%
+}
