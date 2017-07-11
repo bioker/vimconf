@@ -56,7 +56,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
 Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips'
 
 call plug#end()
 
