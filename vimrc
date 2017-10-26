@@ -203,3 +203,15 @@ nnoremap <leader>it :VBTemplate<space>
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" GPG Encrypted files
+if has("autocmd")
+    augroup GPGASCII
+        au!
+        au BufReadPost *.gpg :%!gpg -q -d
+        au BufReadPost *.gpg |redraw
+        au BufWritePre *.gpg :%!gpg -q -e -a
+        au BufWritePost *.gpg u
+        au VimLeave *.gpg :!clear
+    augroup END
+endif
