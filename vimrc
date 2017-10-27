@@ -57,6 +57,8 @@ Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
 Plug 'junegunn/vim-easy-align'
 Plug 'actionshrimp/vim-xpath'
+Plug 'pangloss/vim-javascript'
+Plug 'flowtype/vim-flow'
 
 call plug#end()
 
@@ -215,3 +217,6 @@ if has("autocmd")
         au VimLeave *.gpg :!clear
     augroup END
 endif
+
+" JS
+let g:javascript_plugin_flow = 1
