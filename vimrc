@@ -173,32 +173,6 @@ let g:vbox = {
             \   'dir': g:vimDir. '/vbox'
             \ }
 let g:vbox.empty_buffer_only = 0
-let g:vbox.variables = {
-    \ '%CLASS%' : 'f=TemplateInputClassVar()',
-    \ '%METHOD%' : 'f=TemplateInputMethodVar()',
-    \ '%CYCLE_VAR%' : 'f=TemplateInputCycleVarVar()',
-    \ '%CYCLE_CONDITION%' : 'f=TemplateInputCycleCondVar()',
-    \ '%IF_CONDITION%' : 'f=TemplateInputIfCondVar()',
-    \ '%PACKAGE%' : 'f=TemplateInputPackageVar()'
-    \ }
-function! TemplateInputClassVar()
-    return input('Enter class name:')
-endfunction
-function! TemplateInputPackageVar()
-    return input('Enter package name:')
-endfunction
-function! TemplateInputMethodVar()
-    return input('Enter method name:')
-endfunction
-function! TemplateInputCycleVarVar()
-    return input('Enter cycle var:')
-endfunction
-function! TemplateInputCycleCondVar()
-    return input('Enter cycle condition:')
-endfunction
-function! TemplateInputIfCondVar()
-    return input('Enter if condition:')
-endfunction
 
 nnoremap <leader>it :VBTemplate<space>
 

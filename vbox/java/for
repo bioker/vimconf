@@ -1,3 +1,0 @@
-for (int %CYCLE_VAR%, %CYCLE_CONDITION%, %CYCLE_VAR%++){
-    %_%
-}
