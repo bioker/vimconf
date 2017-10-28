@@ -1,5 +1,16 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 
+    <!--JSP mapping-->
+    <!--<servlet>-->
+        <!--<servlet-name>testJsp</servlet-name>-->
+        <!--<jsp-file>/test.jsp</jsp-file>-->
+    <!--</servlet>-->
+
+    <!--Welcome page-->
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>index.html</welcome-file>-->
+    <!--</welcome-file-list>-->
+
     <servlet>
         <servlet-name>comingsoon</servlet-name>
         <servlet-class>mysite.server.ComingSoonServlet</servlet-class>
@@ -9,5 +20,11 @@
         <servlet-name>comingsoon</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+
+    <!--Error handle-->
+    <!--<error-page>-->
+        <!--<error-code>404</error-code>-->
+        <!--<location>/errorHandler</location>-->
+    <!--</error-page>-->
 
 </web-app>
