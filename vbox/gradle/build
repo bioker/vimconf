@@ -1,13 +1,14 @@
 group 'net.wls'
 version '0.1.0'
 
-def springVersion='5.0.0.RELEASE'
-def hibernateVersion='5.0.1.Final'
-def lombokVersion='1.16.18'
-def junitVersion='4.12'
-def log4jVersion='2.9.0'
-def servletApiVersion='3.1.0'
-def jspApiVersion='2.3.1'
+//def springVersion='5.0.0.RELEASE'
+//def hibernateVersion='5.0.1.Final'
+//def lombokVersion='1.16.18'
+//def junitVersion='4.12'
+//def log4jVersion='2.9.0'
+//def servletApiVersion='3.1.0'
+//def jspApiVersion='2.3.1'
+//def jpaApiVersion='1.0.2'
 
 apply plugin: 'maven-publish'
 
@@ -59,7 +60,7 @@ test {
 }
 
 dependencies {
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+    //compileOnly group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
     // common libs
     //compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
     //compile group: 'commons-io', name: 'commons-io', version: '2.5'
@@ -91,5 +92,10 @@ dependencies {
     //compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: "$servletApiVersion"
     // jsp
     //compileOnly group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version:"$jspApiVersion"
-    testCompile group: 'junit', name: 'junit', version: "$junitVersion"
+    // jpa
+    //compileOnly group: 'javax.persistence', name: 'persistence-api', version: "$jpaApiVersion"
+    // h2 db
+    //testCompile group: 'com.h2database', name: 'h2', version: '1.4.196'
+    // junit
+    //testCompile group: 'junit', name: 'junit', version: "$junitVersion"
 }
