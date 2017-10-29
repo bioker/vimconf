@@ -2,7 +2,7 @@ group 'net.wls'
 version '0.1.0'
 
 //def springVersion='5.0.0.RELEASE'
-//def hibernateVersion='5.0.1.Final'
+//def hibernateVersion='5.2.6.Final'
 //def lombokVersion='1.16.18'
 //def junitVersion='4.12'
 //def log4jVersion='2.9.0'
@@ -88,6 +88,7 @@ dependencies {
     //compile group: 'org.springframework', name: 'spring-expression', version: "$springVersion"
     // hibernate
     //compile group: 'org.hibernate', name: 'hibernate-core', version: "$hibernateVersion"
+    //compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
     // servlet
     //compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: "$servletApiVersion"
     // jsp
