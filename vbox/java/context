@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <Resource name="jdbc/db"
+    <Resource
+        name="jdbc"
+        auth="Container"
         type="javax.sql.DataSource"
-        username=""
-        password=""
+        maxActive="100"
+        maxIdle="30"
+        maxWait="10000"
         driverClassName=""
-        url=""/>
+        url=""
+        username=""
+        password=""/>
 </Context>
