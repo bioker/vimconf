@@ -5,6 +5,11 @@
          <!--<param-name>User</param-name>-->
          <!--<param-value>Application Context User Parameter</param-value>-->
      <!--</context-param>-->
+    <!--SpringMVC config location parameter-->
+     <!--<context-param>-->
+         <!--<param-name>contextConfigLocation</param-name>-->
+         <!--<param-value>/WEB-INF/servlet-context.xml</param-value>-->
+     <!--</context-param>-->
 
     <!--JSP definition-->
     <!--<servlet>-->
@@ -20,6 +25,17 @@
     <!--<welcome-file-list>-->
         <!--<welcome-file>index.html</welcome-file>-->
     <!--</welcome-file-list>-->
+
+    <!--SpringMVC DispatcherServlet-->
+    <!--<servlet>-->
+        <!--<servlet-name>DispatcherServlet</servlet-name>-->
+        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+        <!--<load-on-startup>1</load-on-startup>-->
+        <!--<init-param>-->
+            <!--<param-name>contextConfigLocation</param-name>-->
+            <!--<param-value>/WEB-INF/servlet-context.xml</param-value>-->
+        <!--</init-param>-->
+    <!--</servlet>-->
 
     <!--Servlet definition-->
     <!--<servlet>-->
