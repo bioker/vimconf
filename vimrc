@@ -59,6 +59,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'actionshrimp/vim-xpath'
 Plug 'pangloss/vim-javascript'
 Plug 'flowtype/vim-flow'
+Plug 'myhere/vim-nodejs-complete'
 
 call plug#end()
 

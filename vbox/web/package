@@ -1,0 +1,11 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pack": "browserify script.js -o packed_script.js"
+  },
+  "author": "Viktor Vlasov",
+  "license": "ISC"
+}
