@@ -39,9 +39,11 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'ivalkeen/nerdtree-execute'
 
+""" git
+Plug 'tpope/vim-fugitive'
+
 """ status info
 Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
@@ -54,45 +56,39 @@ Plug 'bioker/vBox.vim'
 """ editing
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
-Plug 'valloric/MatchTagAlways'
 Plug 'junegunn/vim-easy-align'
+
+""" util
 Plug 'actionshrimp/vim-xpath'
-Plug 'pangloss/vim-javascript'
-Plug 'flowtype/vim-flow'
-Plug 'myhere/vim-nodejs-complete'
+Plug 'valloric/MatchTagAlways'
 
 call plug#end()
 
 " My
 
-"" colorscheme
+"" appearance
 syntax enable
 set background=dark
-"set background=light
 let g:solarized_termcolors=256
 colorscheme solarized
-noremap ; :!
 
 "" git
-
-function! GitCommit()
-    let comment = input('Enter commit: ')
-    execute '!git commit -m "' . comment '"'
-endfunction
-function! GitTag()
-    let tag = input('Enter tag: ')
-    execute '!git tag ' . tag
-endfunction
-nnoremap <leader>gs :!git status<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>ga :Gwrite<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gpu :!git pull<CR>
-nnoremap <leader>ga :!git add .<CR>
-nnoremap <leader>gc :call GitCommit()<CR>
-nnoremap <leader>gt :call GitTag()<CR>
 nnoremap <leader>gp :!git push<CR>
 nnoremap <leader>gpt :!git push --tags<CR>
+
+"" formatting
 nnoremap <leader>ff gg=G
-" echo absolute path
+
+"" echo absolute path
 nnoremap <leader>ecf :echo expand('%:p')<CR>
+
+"" execute
+noremap ; :!
 
 
 "" maven
@@ -174,24 +170,8 @@ let g:vbox = {
             \   'dir': g:vimDir. '/vbox'
             \ }
 let g:vbox.empty_buffer_only = 0
-
 nnoremap <leader>it :VBTemplate<space>
 
 " EasyAlign
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
-" GPG Encrypted files
-if has("autocmd")
-    augroup GPGASCII
-        au!
-        au BufReadPost *.gpg :%!gpg -q -d
-        au BufReadPost *.gpg |redraw
-        au BufWritePre *.gpg :%!gpg -q -e -a
-        au BufWritePost *.gpg u
-        au VimLeave *.gpg :!clear
-    augroup END
-endif
-
-" JS
-let g:javascript_plugin_flow = 1
+xnoremap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
