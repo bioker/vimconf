@@ -83,6 +83,10 @@ nnoremap <leader>gpt :!git push --tags<CR>
 
 "" formatting
 nnoremap <leader>ff gg=G
+"" common
+nnoremap <leader>el v$h
+nnoremap <leader>hls :set hlsearch!<CR>
+vnoremap <leader>c "+y
 
 "" echo absolute path
 nnoremap <leader>ecf :echo expand('%:p')<CR>
