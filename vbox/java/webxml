@@ -1,70 +1,70 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 
     <!--Context parameter definition-->
-     <!--<context-param>-->
-         <!--<param-name>User</param-name>-->
-         <!--<param-value>Application Context User Parameter</param-value>-->
-     <!--</context-param>-->
+     <context-param>
+         <param-name>User</param-name>
+         <param-value>Application Context User Parameter</param-value>
+     </context-param>
     <!--SpringMVC config location parameter-->
-     <!--<context-param>-->
-         <!--<param-name>contextConfigLocation</param-name>-->
-         <!--<param-value>/WEB-INF/servlet-context.xml</param-value>-->
-     <!--</context-param>-->
+     <context-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/servlet-context.xml</param-value>
+     </context-param>
 
     <!--JSP definition-->
-    <!--<servlet>-->
-        <!--<servlet-name>TestJsp</servlet-name>-->
-        <!--<jsp-file>/test.jsp</jsp-file>-->
-        <!--<init-param>-->
-            <!--<param-name>Test Param</param-name>-->
-            <!--<param-value>JSP Config Param</param-value>-->
-        <!--</init-param>-->
-    <!--</servlet>-->
+    <servlet>
+        <servlet-name>TestJsp</servlet-name>
+        <jsp-file>/test.jsp</jsp-file>
+        <init-param>
+            <param-name>Test Param</param-name>
+            <param-value>JSP Config Param</param-value>
+        </init-param>
+    </servlet>
 
     <!--Welcome page-->
-    <!--<welcome-file-list>-->
-        <!--<welcome-file>index.html</welcome-file>-->
-    <!--</welcome-file-list>-->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 
     <!--SpringMVC DispatcherServlet-->
-    <!--<servlet>-->
-        <!--<servlet-name>DispatcherServlet</servlet-name>-->
-        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-        <!--<load-on-startup>1</load-on-startup>-->
-        <!--<init-param>-->
-            <!--<param-name>contextConfigLocation</param-name>-->
-            <!--<param-value>/WEB-INF/servlet-context.xml</param-value>-->
-        <!--</init-param>-->
-    <!--</servlet>-->
+    <servlet>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/servlet-context.xml</param-value>
+        </init-param>
+    </servlet>
 
     <!--Servlet definition-->
-    <!--<servlet>-->
-        <!--<servlet-name>TestServlet</servlet-name>-->
-        <!--<servlet-class>net.wls.test.servlet.TestServlet</servlet-class>-->
-    <!--</servlet>-->
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>net.wls.test.servlet.TestServlet</servlet-class>
+    </servlet>
 
     <!--Servlet mapping-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>TestServlet</servlet-name>-->
-        <!--<url-pattern>/test_servlet</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test_servlet</url-pattern>
+    </servlet-mapping>
 
     <!--JSP mapping-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>TestJsp</servlet-name>-->
-        <!--<url-pattern>/test_jsp<url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>TestJsp</servlet-name>
+        <url-pattern>/test_jsp<url-pattern>
+    </servlet-mapping>
 
     <!--Error handle by code-->
-    <!--<error-page>-->
-        <!--<error-code>404</error-code>-->
-        <!--<location>/errorHandler</location>-->
-    <!--</error-page>-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorHandler</location>
+    </error-page>
 
     <!--Error handle by exception-->
-    <!--<error-page>-->
-        <!--<exception-type>java.lang.Throwable</exception-type>-->
-        <!--<location>/errorHandler</location>-->
-    <!--</error-page>-->
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/errorHandler</location>
+    </error-page>
 
 </web-app>

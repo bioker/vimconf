@@ -57,6 +57,7 @@ Plug 'bioker/vBox.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'junegunn/vim-easy-align'
+Plug 'vim-scripts/ShowMarks'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
@@ -85,6 +86,7 @@ nnoremap <leader>gpt :!git push --tags<CR>
 nnoremap <leader>ff gg=G
 "" common
 nnoremap <leader>el v$h
+nnoremap <c-/> :call NERDComment("n", "Invert")<CR>
 nnoremap <leader>hls :set hlsearch!<CR>
 vnoremap <leader>c "+y
 
@@ -101,7 +103,6 @@ function! MavenExec()
     let class = input('Enter full class name:')
     execute '!mvn exec:java -Dexec.mainClass="' . class . '"'
 endfunction
-nnoremap <leader>me :call MavenExec()<CR>
 
 function! MavenInstallFile()
     let file = input('Enter file name:')
@@ -113,20 +114,33 @@ function! MavenInstallFile()
                 \ . groupId . '" -DartifactId="' . artifactId . '" -Dversion="'
                 \ . artifactVersion . '" -Dpackaging="' . packaging . '"'
 endfunction
-nnoremap <leader>mif :call MavenInstallFile()<CR>
+
+function! CreateJavaProject()
+    let result = system("mkdir -p src/main/java;" . 
+                \ "mkdir -p src/main/resources;" .
+                \ "mkdir -p src/test/java;" .
+                \ "mkdir -p src/test/resources")
+endfunction
+
+function! CreateGroovyProject()
+    let result = system("mkdir -p src/main/groovy;" .
+                \ "mkdir -p src/main/resources;" .
+                \ "mkdir -p src/test/groovy;" .
+                \ "mkdir -p src/test/resources")
+endfunction
+
+function! CreateScalaProject()
+    let result = system("mkdir -p src/main/scala;" .
+                \ "mkdir -p src/main/resources;" .
+                \ "mkdir -p src/test/scala;" .
+                \ "mkdir -p src/test/resources")
+endfunction
 
 "" maven test plugin call
 function! MavenTest()
     let testGroup = input('Enter package:')
     execute '!mvn clean test -DtestGroup="' . testGroup . '"'
 endfunction
-nnoremap <leader>mt :call MavenTest()<CR>
-"" maven simple actions
-nnoremap <leader>mc :!mvn clean<CR>
-nnoremap <leader>mcp :!mvn clean package<CR>
-nnoremap <leader>mci :!mvn clean install<CR>
-nnoremap <leader>mcd :!mvn clean deploy<CR>
-nnoremap <leader>mct :!mvn clean test<CR>
 
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
