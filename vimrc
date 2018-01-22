@@ -57,7 +57,7 @@ Plug 'bioker/vBox.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'junegunn/vim-easy-align'
-Plug 'vim-scripts/ShowMarks'
+Plug 'kshenoy/vim-signature'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
