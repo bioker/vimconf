@@ -8,6 +8,16 @@ publishing {
             from components.java
         }
     }
+    repositories{
+        maven {
+            url 'http://archiva.lan/repository/internal/'
+            credentials{
+                username ''
+                password ''
+            }
+        }
+    }
+
 }
 
 artifacts {
