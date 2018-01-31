@@ -58,6 +58,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'junegunn/vim-easy-align'
 Plug 'kshenoy/vim-signature'
+Plug 'chrisbra/csv.vim'
 
 """ util
 Plug 'actionshrimp/vim-xpath'

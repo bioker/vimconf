@@ -40,3 +40,37 @@ war {
     classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
     webXml = file("src/someWeb.xml") // copies a file to WEB-INF/web.xml
 }
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
+    }
+}
+apply plugin: 'com.github.johnrengelman.shadow'
+
+jar {
+    manifest {
+        attributes 'Main-Class': ''
+    }
+}
+
+buildscript{
+    repositories{
+        jcenter()
+            mavenCentral()
+    }
+    dependencies {
+        classpath 'no.nils:wsdl2java:0.10'
+    }
+}
+apply plugin: 'no.nils.wsdl2java'
+
+wsdl2java {
+    generatedWsdlDir = file('src/main/java/gen')
+    wsdlsToGenerate = [
+        ['src/main/resources/wsdl/']
+    ]
+}
