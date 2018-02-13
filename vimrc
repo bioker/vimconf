@@ -62,6 +62,7 @@ Plug 'chrisbra/csv.vim'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
+Plug 'will133/vim-dirdiff'
 Plug 'valloric/MatchTagAlways'
 
 call plug#end()
