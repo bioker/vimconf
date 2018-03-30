@@ -24,6 +24,7 @@ set laststatus=2
 set listchars+=tab:>.
 let mapleader=","
 set updatetime=250
+set colorcolumn=80
 
 " VimPlug
 
