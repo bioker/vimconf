@@ -145,6 +145,20 @@ function! MavenTest()
     execute '!mvn clean test -DtestGroup="' . testGroup . '"'
 endfunction
 
+function! GradleTest()
+    let classPattern = input('Enter class pattern:')
+    execute '!./gradlew clean test --tests "' . classPattern . '"'
+endfunction
+
+function! DoneScore()
+    execute '!echo $(grep -r "\[ \]" | wc -l)/$(grep -r "\[x\]" | wc -l)'
+endfunction
+function! DonePercent()
+    execute '!DONE=$(grep -r "\[x\]" | wc -l);' .
+                \ 'NOT=$(grep -r "\[ \]" | wc -l);' .
+                \ 'echo $(bc <<< "scale=2;100*$DONE/$NOT")'
+endfunction
+
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
