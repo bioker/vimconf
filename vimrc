@@ -210,3 +210,5 @@ nnoremap <leader>it :VBTemplate<space>
 " EasyAlign
 xnoremap ga <Plug>(EasyAlign)
 nnoremap ga <Plug>(EasyAlign)
+
+nnoremap <leader>py :%!python<CR>
