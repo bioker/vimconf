@@ -212,3 +212,4 @@ xnoremap ga <Plug>(EasyAlign)
 nnoremap ga <Plug>(EasyAlign)
 
 nnoremap <leader>py :%!python<CR>
+nnoremap <leader>sc :%!xargs -0 scala -e<CR>
