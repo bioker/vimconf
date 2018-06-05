@@ -215,11 +215,14 @@ nnoremap ga <Plug>(EasyAlign)
 " Python
 nnoremap <leader>py :%!python<CR>
 vnoremap <leader>py :!python<CR>
+vnoremap <leader>epy :w !python<CR>
 
 " Scala
 nnoremap <leader>sc :%!xargs -0 scala -e<CR>
 vnoremap <leader>sc :!xargs -0 scala -e<CR>
+vnoremap <leader>esc :w !xargs -0 scala -e<CR>
 
 " Hive
 nnoremap <leader>hv :%!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
 vnoremap <leader>hv :!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
+vnoremap <leader>ehv :w !xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
