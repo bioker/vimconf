@@ -60,6 +60,7 @@ Plug 'raimondi/delimitmate'
 Plug 'junegunn/vim-easy-align'
 Plug 'kshenoy/vim-signature'
 Plug 'chrisbra/csv.vim'
+Plug 'davidhalter/jedi-vim'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
@@ -211,5 +212,14 @@ nnoremap <leader>it :VBTemplate<space>
 xnoremap ga <Plug>(EasyAlign)
 nnoremap ga <Plug>(EasyAlign)
 
+" Python
 nnoremap <leader>py :%!python<CR>
+vnoremap <leader>py :!python<CR>
+
+" Scala
 nnoremap <leader>sc :%!xargs -0 scala -e<CR>
+vnoremap <leader>sc :!xargs -0 scala -e<CR>
+
+" Hive
+nnoremap <leader>hv :%!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
+vnoremap <leader>hv :!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
