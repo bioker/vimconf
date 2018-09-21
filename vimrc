@@ -11,12 +11,10 @@ set incsearch
 set autoindent
 set shiftwidth=4
 set smartindent
-set tabstop=8
 set softtabstop=4
 set expandtab
 set smarttab
 set ruler
-set undolevels=1000
 set backspace=indent,eol,start
 set encoding=utf-8
 set fileencoding=utf-8
@@ -25,6 +23,7 @@ set listchars+=tab:>.
 let mapleader=","
 set updatetime=250
 set colorcolumn=80
+set omnifunc=syntaxcomplete#Complete
 
 " VimPlug
 
@@ -38,7 +37,6 @@ call plug#begin()
 
 """ navigation
 Plug 'scrooloose/nerdtree'
-Plug 'ivalkeen/nerdtree-execute'
 
 """ git
 Plug 'tpope/vim-fugitive'
@@ -57,19 +55,18 @@ Plug 'bioker/vBox.vim'
 """ editing
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
+Plug 'valloric/MatchTagAlways'
 Plug 'junegunn/vim-easy-align'
 Plug 'kshenoy/vim-signature'
 Plug 'chrisbra/csv.vim'
 Plug 'davidhalter/jedi-vim'
+Plug 'ternjs/tern_for_vim'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
 Plug 'will133/vim-dirdiff'
-Plug 'valloric/MatchTagAlways'
 
 call plug#end()
-
-" My
 
 "" appearance
 syntax enable
@@ -77,88 +74,14 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-"" git
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>ga :Gwrite<CR>
-nnoremap <leader>gr :Gread<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gpu :!git pull<CR>
-nnoremap <leader>gp :!git push<CR>
-nnoremap <leader>gpt :!git push --tags<CR>
-
-"" formatting
-nnoremap <leader>ff gg=G
 "" common
 nnoremap <leader>el v$h
-nnoremap <c-/> :call NERDComment("n", "Invert")<CR>
 nnoremap <leader>hls :set hlsearch!<CR>
 vnoremap <leader>c "+y
-
 "" echo absolute path
 nnoremap <leader>ecf :echo expand('%:p')<CR>
-
 "" execute
 noremap ; :!
-
-
-"" maven
-
-function! MavenExec()
-    let class = input('Enter full class name:')
-    execute '!mvn exec:java -Dexec.mainClass="' . class . '"'
-endfunction
-
-function! MavenInstallFile()
-    let file = input('Enter file name:')
-    let groupId = input('Enter group id:')
-    let artifactId = input('Enter artifact id:')
-    let artifactVersion = input('Enter version:')
-    let packaging = input('Enter packaging:')
-    execute '!mvn install:install-file -Dfile="' . file . '"' . ' -DgroupId="'
-                \ . groupId . '" -DartifactId="' . artifactId . '" -Dversion="'
-                \ . artifactVersion . '" -Dpackaging="' . packaging . '"'
-endfunction
-
-function! CreateJavaProject()
-    let result = system("mkdir -p src/main/java;" . 
-                \ "mkdir -p src/main/resources;" .
-                \ "mkdir -p src/test/java;" .
-                \ "mkdir -p src/test/resources")
-endfunction
-
-function! CreateGroovyProject()
-    let result = system("mkdir -p src/main/groovy;" .
-                \ "mkdir -p src/main/resources;" .
-                \ "mkdir -p src/test/groovy;" .
-                \ "mkdir -p src/test/resources")
-endfunction
-
-function! CreateScalaProject()
-    let result = system("mkdir -p src/main/scala;" .
-                \ "mkdir -p src/main/resources;" .
-                \ "mkdir -p src/test/scala;" .
-                \ "mkdir -p src/test/resources")
-endfunction
-
-"" maven test plugin call
-function! MavenTest()
-    let testGroup = input('Enter package:')
-    execute '!mvn clean test -DtestGroup="' . testGroup . '"'
-endfunction
-
-function! GradleTest()
-    let classPattern = input('Enter class pattern:')
-    execute '!./gradlew clean test --tests "' . classPattern . '"'
-endfunction
-
-function! DoneScore()
-    execute '!echo $(grep -r "\[ \]" | wc -l)/$(grep -r "\[x\]" | wc -l)'
-endfunction
-function! DonePercent()
-    execute '!DONE=$(grep -r "\[x\]" | wc -l);' .
-                \ 'NOT=$(grep -r "\[ \]" | wc -l);' .
-                \ 'echo $(bc <<< "scale=2;100*$DONE/$NOT")'
-endfunction
 
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
@@ -207,10 +130,6 @@ let g:vbox = {
             \ }
 let g:vbox.empty_buffer_only = 0
 nnoremap <leader>it :VBTemplate<space>
-
-" EasyAlign
-xnoremap ga <Plug>(EasyAlign)
-nnoremap ga <Plug>(EasyAlign)
 
 " Python
 nnoremap <leader>py :%!python<CR>
