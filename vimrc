@@ -73,6 +73,7 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+hi Normal guibg=NONE ctermbg=NONE
 
 "" common
 nnoremap <leader>el v$h
