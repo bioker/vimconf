@@ -37,6 +37,7 @@ call plug#begin()
 
 """ navigation
 Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf'
 
 """ git
 Plug 'tpope/vim-fugitive'
@@ -61,6 +62,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'chrisbra/csv.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim'
+Plug 'rip-rip/clang_complete'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
@@ -146,3 +148,6 @@ vnoremap <leader>esc :w !xargs -0 scala -e<CR>
 nnoremap <leader>hv :%!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
 vnoremap <leader>hv :!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
 vnoremap <leader>ehv :w !xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
+
+" C lang complete
+let g:clang_library_path='/usr/lib/llvm-5.0/lib/'
