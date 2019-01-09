@@ -63,6 +63,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim'
 Plug 'rip-rip/clang_complete'
+Plug 'vim-syntastic/syntastic'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
@@ -151,3 +152,12 @@ vnoremap <leader>ehv :w !xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
 
 " C lang complete
 let g:clang_library_path='/usr/lib/llvm-5.0/lib/'
+
+" Syntastic
+let g:syntastic_java_checkers = ['checkstyle']
+let g:syntastic_java_checkstyle_classpath = g:vimDir. '/lib/checkstyle-8.16-all.jar'
+let g:syntastic_java_checkstyle_conf_file = g:vimDir. '/res/checkstyle/google_checks.xml'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
