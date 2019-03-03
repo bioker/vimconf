@@ -79,9 +79,15 @@ colorscheme solarized
 hi Normal guibg=NONE ctermbg=NONE
 
 "" common
-nnoremap <leader>el v$h
-nnoremap <leader>hls :set hlsearch!<CR>
 vnoremap <leader>c "+y
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+"" abbreveations
+iabbrev jmain public static void main(String[] args) {
+iabbrev pmain if __main__ == "__main__":<cr>
+iabbrev jsout System.out.println(
 "" echo absolute path
 nnoremap <leader>ecf :echo expand('%:p')<CR>
 "" execute
@@ -161,3 +167,23 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
+
+function! ListJavaBaseClasses()
+python <<EOF
+import vim, subprocess, os
+
+jmod_output = subprocess.check_output(
+        ['jmod', 'list', os.environ['JAVA_HOME'] + str('/jmods/java.base.jmod')])
+result = subprocess.Popen(['grep', 'classes'],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+grep_output = result.communicate(input=jmod_output)[0]
+classes = (grep_output
+    .decode('utf8')
+    .replace('classes/', '')
+    .replace('.class', '')
+    .replace('/', '.')
+    .splitlines())
+for clazz in classes:
+    vim.current.buffer.append(clazz)
+EOF
+endfunction
