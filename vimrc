@@ -39,6 +39,14 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf'
 
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/unite.vim'
+Plug 'rstacruz/vim-fastunite'
+
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-outline'
+Plug 'tsukkee/unite-tag'
+
 """ git
 Plug 'tpope/vim-fugitive'
 
@@ -187,3 +195,5 @@ for clazz in classes:
     vim.current.buffer.append(clazz)
 EOF
 endfunction
+
+nnoremap <C-p> [unite]p
