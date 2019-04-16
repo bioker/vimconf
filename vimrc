@@ -125,7 +125,7 @@ let g:lightline = {
        \ 'colorscheme': 'wombat',
        \ 'active': {
        \   'left': [ [ 'mode', 'paste' ],
-       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+       \             [ 'fugitive', 'readonly', 'absolutepath', 'modified' ] ]
        \ },
        \ 'component': {
        \   'readonly': '%{&filetype=="help"?"READONLY":&readonly?"READONLY":""}',
