@@ -59,7 +59,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'altercation/vim-colors-solarized'
 
 """ template
-Plug 'bioker/vBox.vim'
+Plug 'KabbAmine/vBox.vim'
 
 """ editing
 Plug 'scrooloose/nerdcommenter'
