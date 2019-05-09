@@ -58,9 +58,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 """ appearance
 Plug 'altercation/vim-colors-solarized'
 
-""" template
-Plug 'KabbAmine/vBox.vim'
-
 """ editing
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
@@ -84,6 +81,7 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+" Transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
 "" common
@@ -143,26 +141,6 @@ let g:lightline = {
 
 " VBox
 let g:vimDir = $HOME.'/.vim'
-let g:vbox = {
-            \   'dir': g:vimDir. '/vbox'
-            \ }
-let g:vbox.empty_buffer_only = 0
-nnoremap <leader>it :VBTemplate<space>
-
-" Python
-nnoremap <leader>py :%!python<CR>
-vnoremap <leader>py :!python<CR>
-vnoremap <leader>epy :w !python<CR>
-
-" Scala
-nnoremap <leader>sc :%!xargs -0 scala -e<CR>
-vnoremap <leader>sc :!xargs -0 scala -e<CR>
-vnoremap <leader>esc :w !xargs -0 scala -e<CR>
-
-" Hive
-nnoremap <leader>hv :%!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
-vnoremap <leader>hv :!xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
-vnoremap <leader>ehv :w !xargs -0 beeline -u jdbc:hive2://localhost:10000 -e<CR>
 
 " C lang complete
 let g:clang_library_path='/usr/lib/llvm-5.0/lib/'
@@ -175,25 +153,3 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
-
-function! ListJavaBaseClasses()
-python <<EOF
-import vim, subprocess, os
-
-jmod_output = subprocess.check_output(
-        ['jmod', 'list', os.environ['JAVA_HOME'] + str('/jmods/java.base.jmod')])
-result = subprocess.Popen(['grep', 'classes'],
-            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-grep_output = result.communicate(input=jmod_output)[0]
-classes = (grep_output
-    .decode('utf8')
-    .replace('classes/', '')
-    .replace('.class', '')
-    .replace('/', '.')
-    .splitlines())
-for clazz in classes:
-    vim.current.buffer.append(clazz)
-EOF
-endfunction
-
-nnoremap <C-p> [unite]p
