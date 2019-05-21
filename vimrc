@@ -73,6 +73,7 @@ Plug 'vim-syntastic/syntastic'
 """ util
 Plug 'actionshrimp/vim-xpath'
 Plug 'will133/vim-dirdiff'
+Plug 'amoffat/snake'
 
 call plug#end()
 
@@ -153,3 +154,29 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
+
+if !empty($GOOGLE_APPLICATION_CREDENTIALS)
+python << EOF
+import time
+import snake
+
+snake.abbrev('curtime', time.ctime)
+
+from google.cloud import translate
+
+translate_client = translate.Client()
+
+def translate_en_ru(text):
+    translation = translate_client.translate(text, target_language='ru')
+    print('translatedText: ')
+    print(translation['translatedText'])
+
+@snake.key_map("<leader>tv", mode=snake.VISUAL_MODE)
+def translate_en_ru_visual_selection():
+    translate_en_ru(snake.get_visual_selection())
+EOF
+endif
+
+if filereadable(expand("~/.vim/bundle/snake/plugin/snake.vim"))
+    source ~/.vim/bundle/snake/plugin/snake.vim
+endif
