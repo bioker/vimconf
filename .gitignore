@@ -2,3 +2,4 @@ plugged
 autoload/plug.vim
 lib/*.jar
 res/checkstyle/google_checks.xml
+*.pyc
