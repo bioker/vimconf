@@ -70,6 +70,7 @@ Plug 'ternjs/tern_for_vim'
 Plug 'rip-rip/clang_complete'
 Plug 'vim-syntastic/syntastic'
 Plug 'posva/vim-vue'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 """ util
 Plug 'actionshrimp/vim-xpath'
