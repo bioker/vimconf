@@ -47,6 +47,8 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
 
+Plug 'mileszs/ack.vim'
+
 """ git
 Plug 'tpope/vim-fugitive'
 
@@ -159,4 +161,8 @@ let g:syntastic_check_on_wq = 0
 
 if filereadable(expand("~/.vim/bundle/snake/plugin/snake.vim"))
     source ~/.vim/bundle/snake/plugin/snake.vim
+endif
+
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
 endif
