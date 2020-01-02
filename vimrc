@@ -2,7 +2,7 @@
 set nocompatible
 set nu
 set linebreak
-set textwidth=100
+set textwidth=120
 set showmatch
 set hlsearch
 set smartcase
@@ -20,10 +20,10 @@ set encoding=utf-8
 set fileencoding=utf-8
 set laststatus=2
 set listchars+=tab:>.
-let mapleader=","
 set updatetime=250
-set colorcolumn=80
+set colorcolumn=120
 set omnifunc=syntaxcomplete#Complete
+let mapleader=","
 
 " VimPlug
 
@@ -38,16 +38,7 @@ call plug#begin()
 """ navigation
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf'
-
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
-Plug 'rstacruz/vim-fastunite'
-
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-outline'
-Plug 'tsukkee/unite-tag'
-
-Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf.vim'
 
 """ git
 Plug 'tpope/vim-fugitive'
@@ -56,6 +47,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'kshenoy/vim-signature'
 
 """ appearance
 Plug 'altercation/vim-colors-solarized'
@@ -65,19 +57,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
 Plug 'junegunn/vim-easy-align'
-Plug 'kshenoy/vim-signature'
 Plug 'chrisbra/csv.vim'
-Plug 'davidhalter/jedi-vim'
-Plug 'ternjs/tern_for_vim'
-Plug 'rip-rip/clang_complete'
-Plug 'vim-syntastic/syntastic'
-Plug 'posva/vim-vue'
-Plug 'martinda/Jenkinsfile-vim-syntax'
-
-""" util
-Plug 'actionshrimp/vim-xpath'
-Plug 'will133/vim-dirdiff'
-Plug 'amoffat/snake'
 
 call plug#end()
 
@@ -90,17 +70,17 @@ colorscheme solarized
 hi Normal guibg=NONE ctermbg=NONE
 
 "" common
-vnoremap <leader>c "+y
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <leader>ecf :echo expand('%:p')<CR>
+
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
 iabbrev pmain if __main__ == "__main__":<cr>
 iabbrev jsout System.out.println(
-"" echo absolute path
-nnoremap <leader>ecf :echo expand('%:p')<CR>
+iabbrev selal select * from
+iabbrev desct describe table
+
 "" execute
 noremap ; :!
 
@@ -143,26 +123,3 @@ let g:lightline = {
        \ 'separator': { 'left': '', 'right': '' },
        \ 'subseparator': { 'left': '', 'right': '' }
        \ }
-
-" VBox
-let g:vimDir = $HOME.'/.vim'
-
-" C lang complete
-let g:clang_library_path='/usr/lib/llvm-5.0/lib/'
-
-" Syntastic
-let g:syntastic_java_checkers = ['checkstyle']
-let g:syntastic_java_checkstyle_classpath = g:vimDir. '/lib/checkstyle-8.16-all.jar'
-let g:syntastic_java_checkstyle_conf_file = g:vimDir. '/res/checkstyle/google_checks.xml'
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-
-if filereadable(expand("~/.vim/bundle/snake/plugin/snake.vim"))
-    source ~/.vim/bundle/snake/plugin/snake.vim
-endif
-
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-endif
