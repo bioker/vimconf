@@ -58,6 +58,8 @@ Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
 Plug 'junegunn/vim-easy-align'
 Plug 'chrisbra/csv.vim'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 
 call plug#end()
 
