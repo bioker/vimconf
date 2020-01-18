@@ -74,8 +74,9 @@ hi Normal guibg=NONE ctermbg=NONE
 "" common
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>ecf :echo expand('%:p')<CR>
-vnoremap <leader>cp :w !xclip -selection c<CR>
+nnoremap <leader>ecf :echo expand('%:p')<cr>
+nnoremap <leader>cp :w !xclip -selection c<cr><cr>
+nnoremap <leader>tp :set paste!<cr>
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
