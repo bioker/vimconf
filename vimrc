@@ -80,6 +80,7 @@ nnoremap <leader>tp :set paste!<cr>
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
+iabbrev jmainc public class Main { public static void main(String[] args) {} }
 iabbrev pmain if __main__ == "__main__":<cr>
 iabbrev jsout System.out.println(
 iabbrev selal select * from
