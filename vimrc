@@ -1,3 +1,7 @@
+if has('python3')
+elseif has('python')
+endif
+
 " Vim
 set nocompatible
 set nu
@@ -76,6 +80,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ecf :echo expand('%:p')<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
+nnoremap <leader>ep :w !python3.7<cr>
 nnoremap <leader>tp :set paste!<cr>
 
 "" abbreveations
