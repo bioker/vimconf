@@ -64,6 +64,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'chrisbra/csv.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
+Plug 'towolf/vim-helm'
 
 call plug#end()
 
@@ -81,7 +83,13 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ecf :echo expand('%:p')<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3.7<cr>
+nnoremap <leader>eb :%!bash<cr>
+nnoremap <leader>ejq :%!jq
 nnoremap <leader>tp :set paste!<cr>
+nnoremap <leader>fi :Files<cr>
+nnoremap <leader>fp :Files
+nnoremap <leader>ofp :tabnew<cr>:Files
+nnoremap <leader>gcf :lcd %:p:h<cr>
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
@@ -90,6 +98,7 @@ iabbrev pmain if __main__ == "__main__":<cr>
 iabbrev jsout System.out.println(
 iabbrev selal select * from
 iabbrev desct describe table
+iabbrev ipdbreak import ipdb; ipdb.set_trace()
 
 "" execute
 noremap ; :!
