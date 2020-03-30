@@ -46,6 +46,7 @@ Plug 'junegunn/fzf.vim'
 
 """ git
 Plug 'tpope/vim-fugitive'
+Plug 'christoomey/vim-conflicted'
 
 """ status info
 Plug 'itchyny/lightline.vim'
