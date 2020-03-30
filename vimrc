@@ -61,11 +61,11 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
 Plug 'junegunn/vim-easy-align'
-Plug 'chrisbra/csv.vim'
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
-Plug 'towolf/vim-helm'
+Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
 
 call plug#end()
 
@@ -81,15 +81,20 @@ hi Normal guibg=NONE ctermbg=NONE
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ecf :echo expand('%:p')<cr>
+vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3.7<cr>
 nnoremap <leader>eb :%!bash<cr>
+nnoremap <leader>ech :%!bash /home/wls/Scripts/bp/clickhouse/clickhouse.sh<cr>
 nnoremap <leader>ejq :%!jq
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
 nnoremap <leader>ofp :tabnew<cr>:Files
 nnoremap <leader>gcf :lcd %:p:h<cr>
+nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
+nnoremap <leader>dec :%!gpg -q<cr>
+nnoremap <leader>rw bvey:%s/<c-r>"/
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
@@ -97,6 +102,7 @@ iabbrev jmainc public class Main { public static void main(String[] args) {} }
 iabbrev pmain if __main__ == "__main__":<cr>
 iabbrev jsout System.out.println(
 iabbrev selal select * from
+iabbrev innj inner join
 iabbrev desct describe table
 iabbrev ipdbreak import ipdb; ipdb.set_trace()
 
