@@ -67,6 +67,7 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
 Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
+Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 
 call plug#end()
 
@@ -86,16 +87,22 @@ vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3.7<cr>
 nnoremap <leader>eb :%!bash<cr>
-nnoremap <leader>ech :%!bash /home/wls/Scripts/bp/clickhouse/clickhouse.sh<cr>
-nnoremap <leader>ejq :%!jq
+vnoremap <leader>ec :!bash /home/wls/.vim/current_execute_command.sh<cr>
+nnoremap <leader>ec :%!bash /home/wls/.vim/current_execute_command.sh<cr>
+nnoremap <leader>sc :!cat /home/wls/.vim/current_execute_command.sh<cr>
+nnoremap <leader>ce :!bash /home/wls/.vim/switch_execute_command.sh<cr>
+nnoremap <leader>ej :%!jq
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
 nnoremap <leader>ofp :tabnew<cr>:Files
-nnoremap <leader>gcf :lcd %:p:h<cr>
+nnoremap <leader>lcf :lcd %:p:h<cr>
+nnoremap <leader>gcf :cd %:p:h<cr>
+nnoremap <leader>cap :let @+=expand("%:p")<cr>
 nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 nnoremap <leader>dec :%!gpg -q<cr>
 nnoremap <leader>rw bvey:%s/<c-r>"/
+nnoremap <leader>now :r !date --iso-8601=seconds<cr>
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
