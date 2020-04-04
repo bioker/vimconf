@@ -5,3 +5,4 @@ res/checkstyle/google_checks.xml
 *.pyc
 current_execute_command.sh
 execute_commands.sh
+*.swp
