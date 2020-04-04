@@ -103,6 +103,8 @@ nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiber
 nnoremap <leader>dec :%!gpg -q<cr>
 nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=seconds<cr>
+nnoremap <leader>bc :%!bc -l<cr>
+vnoremap <leader>bc :!bc -l<cr>
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
