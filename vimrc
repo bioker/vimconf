@@ -115,6 +115,7 @@ iabbrev selal select * from
 iabbrev innj inner join
 iabbrev desct describe table
 iabbrev ipdbreak import ipdb; ipdb.set_trace()
+iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 
 "" execute
 noremap ; :!
