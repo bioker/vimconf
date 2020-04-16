@@ -86,6 +86,7 @@ nnoremap <leader>ecf :echo expand('%:p')<cr>
 vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3.7<cr>
+vnoremap <leader>ep :!python3.7<cr>
 nnoremap <leader>eb :%!bash<cr>
 vnoremap <leader>ec :!bash /home/wls/.vim/current_execute_command.sh<cr>
 nnoremap <leader>ec :%!bash /home/wls/.vim/current_execute_command.sh<cr>
@@ -95,7 +96,8 @@ nnoremap <leader>ej :%!jq
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
-nnoremap <leader>ofp :tabnew<cr>:Files
+nnoremap <leader>taf :tabnew<cr>:Files
+nnoremap <leader>tan :tabnew<cr>
 nnoremap <leader>lcf :lcd %:p:h<cr>
 nnoremap <leader>gcf :cd %:p:h<cr>
 nnoremap <leader>cap :let @+=expand("%:p")<cr>
@@ -105,6 +107,12 @@ nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=seconds<cr>
 nnoremap <leader>bc :%!bc -l<cr>
 vnoremap <leader>bc :!bc -l<cr>
+nnoremap <leader>fts :set ft=sql<cr>
+nnoremap <leader>ftj :set ft=json<cr>
+nnoremap <leader>ftp :set ft=python<cr>
+nnoremap <leader>ftb :set ft=sh<cr>
+vmap <leader>dt yodescribe <c-r>"<esc>V,ec
+nmap <leader>st oshow tables<esc>v2b,ec
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
