@@ -80,7 +80,7 @@ colorscheme solarized
 hi Normal guibg=NONE ctermbg=NONE
 
 "" common
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ecf :echo expand('%:p')<cr>
 vnoremap <leader>cp "+y<cr>
@@ -88,10 +88,11 @@ nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3.7<cr>
 vnoremap <leader>ep :!python3.7<cr>
 nnoremap <leader>eb :%!bash<cr>
-vnoremap <leader>ec :!bash /home/wls/.vim/current_execute_command.sh<cr>
-nnoremap <leader>ec :%!bash /home/wls/.vim/current_execute_command.sh<cr>
-nnoremap <leader>sc :!cat /home/wls/.vim/current_execute_command.sh<cr>
+vnoremap <leader>ec :!bash /home/wls/.vim/current_command.sh<cr>
+nnoremap <leader>ec :%!bash /home/wls/.vim/current_command.sh<cr>
+nnoremap <leader>sc :!cat /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>ce :!bash /home/wls/.vim/switch_execute_command.sh<cr>
+nnoremap <leader>ae :tabnew /home/wls/.vim/execute_commands.sh<cr>
 nnoremap <leader>ej :%!jq
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>fi :Files<cr>
@@ -111,8 +112,11 @@ nnoremap <leader>fts :set ft=sql<cr>
 nnoremap <leader>ftj :set ft=json<cr>
 nnoremap <leader>ftp :set ft=python<cr>
 nnoremap <leader>ftb :set ft=sh<cr>
-vmap <leader>dt yodescribe <c-r>"<esc>V,ec
-nmap <leader>st oshow tables<esc>v2b,ec
+
+autocmd FileType sql vmap <leader>dt yodescribe <c-r>"<esc>V,ec
+autocmd FileType sql vmap <leader>ct yoselect count(*) from <c-r>"<esc>V,ec
+autocmd FileType sql vmap <leader>saf yoselect * from <c-r>"<esc>V,ec
+autocmd FileType sql nmap <leader>st oshow tables<esc>v2b,ec
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {

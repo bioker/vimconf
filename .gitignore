@@ -3,6 +3,6 @@ autoload/plug.vim
 lib/*.jar
 res/checkstyle/google_checks.xml
 *.pyc
-current_execute_command.sh
+current_command.sh
 execute_commands.sh
 *.swp
