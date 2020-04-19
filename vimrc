@@ -6,7 +6,6 @@ endif
 set nocompatible
 set nu
 set linebreak
-set textwidth=120
 set showmatch
 set hlsearch
 set smartcase
@@ -82,7 +81,7 @@ hi Normal guibg=NONE ctermbg=NONE
 "" common
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>ecf :echo expand('%:p')<cr>
+nnoremap <leader>ecf :redir @+ \| echo expand('%:p') \| redir END<cr>
 vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3.7<cr>
@@ -117,6 +116,7 @@ autocmd FileType sql vmap <leader>dt yodescribe <c-r>"<esc>V,ec
 autocmd FileType sql vmap <leader>ct yoselect count(*) from <c-r>"<esc>V,ec
 autocmd FileType sql vmap <leader>saf yoselect * from <c-r>"<esc>V,ec
 autocmd FileType sql nmap <leader>st oshow tables<esc>v2b,ec
+autocmd FileType sql nmap <leader>gc oselect <c-r>c, count(*) from <c-r>t group by <c-r>c<esc>V,ec
 
 "" abbreveations
 iabbrev jmain public static void main(String[] args) {
