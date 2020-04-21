@@ -78,8 +78,9 @@ colorscheme solarized
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
-"" common
+noremap ; :!
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+nnoremap <leader>evd :tabnew /home/wls/.vim<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ecf :redir @+ \| echo expand('%:p') \| redir END<cr>
 vnoremap <leader>cp "+y<cr>
@@ -87,6 +88,7 @@ nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3.7<cr>
 vnoremap <leader>ep :!python3.7<cr>
 nnoremap <leader>eb :%!bash<cr>
+vnoremap <leader>eb :!bash<cr>
 vnoremap <leader>ec :!bash /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>ec :%!bash /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>sc :!cat /home/wls/.vim/current_command.sh<cr>
@@ -112,25 +114,7 @@ nnoremap <leader>ftj :set ft=json<cr>
 nnoremap <leader>ftp :set ft=python<cr>
 nnoremap <leader>ftb :set ft=sh<cr>
 
-autocmd FileType sql vmap <leader>dt yodescribe <c-r>"<esc>V,ec
-autocmd FileType sql vmap <leader>ct yoselect count(*) from <c-r>"<esc>V,ec
-autocmd FileType sql vmap <leader>saf yoselect * from <c-r>"<esc>V,ec
-autocmd FileType sql nmap <leader>st oshow tables<esc>v2b,ec
-autocmd FileType sql nmap <leader>gc oselect <c-r>c, count(*) from <c-r>t group by <c-r>c<esc>V,ec
-
-"" abbreveations
-iabbrev jmain public static void main(String[] args) {
-iabbrev jmainc public class Main { public static void main(String[] args) {} }
-iabbrev pmain if __main__ == "__main__":<cr>
-iabbrev jsout System.out.println(
-iabbrev selal select * from
-iabbrev innj inner join
-iabbrev desct describe table
-iabbrev ipdbreak import ipdb; ipdb.set_trace()
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
-
-"" execute
-noremap ; :!
 
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
