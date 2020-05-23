@@ -79,6 +79,7 @@ colorscheme solarized
 let g:python_highlight_all = 1
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
 
 noremap ; :!
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
