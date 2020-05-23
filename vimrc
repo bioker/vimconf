@@ -55,18 +55,19 @@ Plug 'kshenoy/vim-signature'
 
 """ appearance
 Plug 'altercation/vim-colors-solarized'
+Plug 'vim-python/python-syntax', { 'for': 'python' }
 
 """ editing
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
-Plug 'junegunn/vim-easy-align'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
 Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 call plug#end()
 
@@ -75,6 +76,7 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+let g:python_highlight_all = 1
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -113,8 +115,16 @@ nnoremap <leader>fts :set ft=sql<cr>
 nnoremap <leader>ftj :set ft=json<cr>
 nnoremap <leader>ftp :set ft=python<cr>
 nnoremap <leader>ftb :set ft=sh<cr>
+nnoremap <leader>fty :set ft=yaml<cr>
+nnoremap <leader>ftc :set ft=csv<cr>
+nnoremap <leader>qq :q!<cr>
+nnoremap <leader>vn :vnew<cr>
+nnoremap <leader>n :new<cr>
+nnoremap <leader>ag :Ag <c-r>"<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
+iabbrev kdev kubectl -n develop
+iabbrev ktest kubectl -n test
 
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
