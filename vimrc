@@ -68,6 +68,7 @@ Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
 Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'psycofdj/yaml-path', { 'for': 'yaml' }
 
 call plug#end()
 
@@ -88,8 +89,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ecf :redir @+ \| echo expand('%:p') \| redir END<cr>
 vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
-nnoremap <leader>ep :w !python3.7<cr>
-vnoremap <leader>ep :!python3.7<cr>
+nnoremap <leader>ep :w !python3<cr>
+vnoremap <leader>ep :!python3<cr>
 nnoremap <leader>eb :%!bash<cr>
 vnoremap <leader>eb :!bash<cr>
 vnoremap <leader>ec :!bash /home/wls/.vim/current_command.sh<cr>
@@ -122,6 +123,7 @@ nnoremap <leader>qq :q!<cr>
 nnoremap <leader>vn :vnew<cr>
 nnoremap <leader>n :new<cr>
 nnoremap <leader>ag :Ag <c-r>"<cr>
+nnoremap <leader>yap :Yamlpath<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev kdev kubectl -n develop
