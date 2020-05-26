@@ -26,6 +26,7 @@ set listchars+=tab:>.
 set updatetime=250
 set colorcolumn=120
 set omnifunc=syntaxcomplete#Complete
+set cursorline
 let mapleader=","
 
 " VimPlug
@@ -124,6 +125,8 @@ nnoremap <leader>vn :vnew<cr>
 nnoremap <leader>n :new<cr>
 nnoremap <leader>ag :Ag <c-r>"<cr>
 nnoremap <leader>yap :Yamlpath<cr>
+nnoremap <leader>tw :set wrap!<cr>
+nnoremap <leader>trn :set rnu!<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev kdev kubectl -n develop
