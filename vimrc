@@ -70,6 +70,7 @@ Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'psycofdj/yaml-path', { 'for': 'yaml' }
+Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 
 call plug#end()
 
