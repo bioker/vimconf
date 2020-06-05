@@ -130,6 +130,13 @@ nnoremap <leader>tw :set wrap!<cr>
 nnoremap <leader>trn :set rnu!<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
+iabbrev jjmx -Dcom.sun.management.jmxremote=true
+            \ -Dcom.sun.management.jmxremote.local.only=false
+            \ -Dcom.sun.management.jmxremote.authenticate=false
+            \ -Dcom.sun.management.jmxremote.ssl=false
+            \ -Djava.rmi.server.hostname=localhost
+            \ -Dcom.sun.management.jmxremote.port=9010
+            \ -Dcom.sun.management.jmxremote.rmi.port=9010
 iabbrev kdev kubectl -n develop
 iabbrev ktest kubectl -n test
 
