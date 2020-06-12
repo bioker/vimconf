@@ -85,10 +85,10 @@ hi Normal guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 
 noremap ; :!
-nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+nnoremap <leader>evf :tabnew $MYVIMRC<cr>
 nnoremap <leader>evd :tabnew /home/wls/.vim<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>ecf :redir @+ \| echo expand('%:p') \| redir END<cr>
+nnoremap <leader>cpf :redir @+ \| echo expand('%:p') \| redir END<cr>
 vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3<cr>
@@ -122,9 +122,10 @@ nnoremap <leader>fts :set ft=sh<cr>
 nnoremap <leader>fty :set ft=yaml<cr>
 nnoremap <leader>ftc :set ft=csv<cr>
 nnoremap <leader>qq :q!<cr>
-nnoremap <leader>vn :vnew<cr>
-nnoremap <leader>vnr :vnew<cr><c-w>r
-nnoremap <leader>n :new<cr>
+nnoremap <leader>vl :vnew<cr>
+nnoremap <leader>vr :vnew<cr><c-w>r
+nnoremap <leader>ht :new<cr>
+nnoremap <leader>hb :new<cr><c-w>r
 nnoremap <leader>agr :Ag <c-r>"<cr>
 nnoremap <leader>ag :Ag
 nnoremap <leader>yap :Yamlpath<cr>
