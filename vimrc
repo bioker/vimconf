@@ -115,28 +115,34 @@ nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=seconds<cr>
 nnoremap <leader>bc :%!bc -l<cr>
 vnoremap <leader>bc :!bc -l<cr>
-nnoremap <leader>fts :set ft=sql<cr>
+nnoremap <leader>ftq :set ft=sql<cr>
 nnoremap <leader>ftj :set ft=json<cr>
 nnoremap <leader>ftp :set ft=python<cr>
-nnoremap <leader>ftb :set ft=sh<cr>
+nnoremap <leader>fts :set ft=sh<cr>
 nnoremap <leader>fty :set ft=yaml<cr>
 nnoremap <leader>ftc :set ft=csv<cr>
 nnoremap <leader>qq :q!<cr>
 nnoremap <leader>vn :vnew<cr>
+nnoremap <leader>vnr :vnew<cr><c-w>r
 nnoremap <leader>n :new<cr>
-nnoremap <leader>ag :Ag <c-r>"<cr>
+nnoremap <leader>agr :Ag <c-r>"<cr>
+nnoremap <leader>ag :Ag
 nnoremap <leader>yap :Yamlpath<cr>
 nnoremap <leader>tw :set wrap!<cr>
 nnoremap <leader>trn :set rnu!<cr>
+nnoremap <leader>df :windo diffthis<cr>
+vnoremap <leader>ak :!kubectl apply -f -<cr>
+nnoremap <leader>ak :%!kubectl apply -f -<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
-iabbrev jjmx -Dcom.sun.management.jmxremote=true
-            \ -Dcom.sun.management.jmxremote.local.only=false
-            \ -Dcom.sun.management.jmxremote.authenticate=false
-            \ -Dcom.sun.management.jmxremote.ssl=false
-            \ -Djava.rmi.server.hostname=localhost
+iabbrev jjmx -Dcom.sun.management.jmxremote
             \ -Dcom.sun.management.jmxremote.port=9010
             \ -Dcom.sun.management.jmxremote.rmi.port=9010
+            \ -Dcom.sun.management.jmxremote.authenticate=false
+            \ -Dcom.sun.management.jmxremote.ssl=false
+            \ -Dcom.sun.management.jmxremote.local.only=false
+            \ -Djava.rmi.server.hostname=localhost
+
 iabbrev kdev kubectl -n develop
 iabbrev ktest kubectl -n test
 
