@@ -111,6 +111,10 @@ nnoremap <leader>gcf :cd %:p:h<cr>
 nnoremap <leader>cap :let @+=expand("%:p")<cr>
 nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 nnoremap <leader>dec :%!gpg -q<cr>
+nnoremap <leader>enb :%!base64<cr>
+nnoremap <leader>deb :%!base64 --decode<cr>
+vnoremap <leader>enb :!base64<cr>
+vnoremap <leader>deb :!base64 --decode<cr>
 nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=seconds<cr>
 nnoremap <leader>bc :%!bc -l<cr>
@@ -134,6 +138,8 @@ nnoremap <leader>trn :set rnu!<cr>
 nnoremap <leader>df :windo diffthis<cr>
 vnoremap <leader>ak :!kubectl apply -f -<cr>
 nnoremap <leader>ak :%!kubectl apply -f -<cr>
+nnoremap <leader>fa zM
+nnoremap <leader>ufa zR
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev jjmx -Dcom.sun.management.jmxremote
