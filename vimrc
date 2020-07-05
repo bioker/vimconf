@@ -88,7 +88,7 @@ noremap ; :!
 nnoremap <leader>evf :tabnew $MYVIMRC<cr>
 nnoremap <leader>evd :tabnew /home/wls/.vim<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>cpf :redir @+ \| echo expand('%:p') \| redir END<cr>
+nnoremap <leader>cap :let @+=expand("%:p")<cr>
 vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 nnoremap <leader>ep :w !python3<cr>
@@ -106,15 +106,25 @@ nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
 nnoremap <leader>taf :tabnew<cr>:Files
 nnoremap <leader>tan :tabnew<cr>
+nnoremap <leader>tae :tabnew<cr>:e
 nnoremap <leader>lcf :lcd %:p:h<cr>
 nnoremap <leader>gcf :cd %:p:h<cr>
-nnoremap <leader>cap :let @+=expand("%:p")<cr>
+
 nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 nnoremap <leader>dec :%!gpg -q<cr>
+vnoremap <leader>enc :!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
+vnoremap <leader>dec :!gpg -q<cr>
+
 nnoremap <leader>enb :%!base64<cr>
 nnoremap <leader>deb :%!base64 --decode<cr>
 vnoremap <leader>enb :!base64<cr>
 vnoremap <leader>deb :!base64 --decode<cr>
+
+nnoremap <leader>has :%!sha256sum<cr>
+vnoremap <leader>has :!sha256sum<cr>
+
+nnoremap <leader>cft :%!openssl x509 -text -noout<cr>
+
 nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=seconds<cr>
 nnoremap <leader>bc :%!bc -l<cr>
@@ -140,6 +150,7 @@ vnoremap <leader>ak :!kubectl apply -f -<cr>
 nnoremap <leader>ak :%!kubectl apply -f -<cr>
 nnoremap <leader>fa zM
 nnoremap <leader>ufa zR
+nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev jjmx -Dcom.sun.management.jmxremote
@@ -152,6 +163,8 @@ iabbrev jjmx -Dcom.sun.management.jmxremote
 
 iabbrev kdev kubectl -n develop
 iabbrev ktest kubectl -n test
+iabbrev kbl kubectl
+iabbrev hlm helm template -f values.${values}.yaml --namespace ${namespace} --version ${version} helm
 
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
