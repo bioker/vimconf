@@ -151,6 +151,7 @@ nnoremap <leader>ak :%!kubectl apply -f -<cr>
 nnoremap <leader>fa zM
 nnoremap <leader>ufa zR
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
+nnoremap <leader>tra bvey:tabnew<cr>:r !trans --no-ansi <c-r>"<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev jjmx -Dcom.sun.management.jmxremote
