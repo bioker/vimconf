@@ -101,6 +101,7 @@ nnoremap <leader>sc :!cat /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>ce :!bash /home/wls/.vim/switch_execute_command.sh<cr>
 nnoremap <leader>ae :tabnew /home/wls/.vim/execute_commands.sh<cr>
 nnoremap <leader>ej :%!jq
+nnoremap <leader>ti :%!tidy -xml -i
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
@@ -135,7 +136,9 @@ nnoremap <leader>ftp :set ft=python<cr>
 nnoremap <leader>fts :set ft=sh<cr>
 nnoremap <leader>fty :set ft=yaml<cr>
 nnoremap <leader>ftc :set ft=csv<cr>
+nnoremap <leader>ftx :set ft=xml<cr>
 nnoremap <leader>qq :q!<cr>
+nnoremap <leader>ql :q<cr>
 nnoremap <leader>vl :vnew<cr>
 nnoremap <leader>vr :vnew<cr><c-w>r
 nnoremap <leader>ht :new<cr>
@@ -148,6 +151,7 @@ nnoremap <leader>trn :set rnu!<cr>
 nnoremap <leader>df :windo diffthis<cr>
 vnoremap <leader>ak :!kubectl apply -f -<cr>
 nnoremap <leader>ak :%!kubectl apply -f -<cr>
+nnoremap <leader>dk :%!kubectl diff -f -<cr>:set ft=diff<cr>
 nnoremap <leader>fa zM
 nnoremap <leader>ufa zR
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
@@ -162,11 +166,14 @@ iabbrev jjmx -Dcom.sun.management.jmxremote
             \ -Dcom.sun.management.jmxremote.ssl=false
             \ -Dcom.sun.management.jmxremote.local.only=false
             \ -Djava.rmi.server.hostname=localhost
+iabbrev aplf apply from: "${project.rootDir}/gradle/config/
 
 iabbrev kdev kubectl -n develop
 iabbrev ktest kubectl -n test
 iabbrev kbl kubectl
-iabbrev hlm helm template -f values.${values}.yaml --namespace ${namespace} --version ${version} helm
+iabbrev hlm helm template -f helm/values.${values}.yaml --namespace ${namespace} --version ${version} helm
+iabbrev hlm2 helm2 template -f helm/values.${values}.yaml --namespace ${namespace} --set-string version=${version} helm
+iabbrev hlmvars values=qa<cr>namespace=develop<cr>version=develop
 
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
