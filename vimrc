@@ -62,6 +62,7 @@ Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
+Plug 'vim-syntastic/syntastic'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
@@ -71,6 +72,7 @@ Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'psycofdj/yaml-path', { 'for': 'yaml' }
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
+Plug 'google/vim-jsonnet', { 'for': 'jsonnet'}
 
 call plug#end()
 
@@ -126,6 +128,8 @@ vnoremap <leader>has :!sha256sum<cr>
 
 nnoremap <leader>cft :%!openssl x509 -text -noout<cr>
 
+nnoremap <leader>syc :SyntasticCheck<cr>
+nnoremap <leader>syr :SyntasticReset<cr>
 nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=seconds<cr>
 nnoremap <leader>bc :%!bc -l<cr>
@@ -199,18 +203,30 @@ let g:lightline = {
        \ 'colorscheme': 'wombat',
        \ 'active': {
        \   'left': [ [ 'mode', 'paste' ],
-       \             [ 'fugitive', 'readonly', 'absolutepath', 'modified' ] ]
+       \             [ 'fugitive', 'readonly', 'absolutepath', 'modified' ] ],
+       \   'right': [ [ 'lineinfo' ],
+       \              [ 'percent' ],
+       \              [ 'syntastic', 'fileformat', 'fileencoding', 'filetype' ] ],
        \ },
        \ 'component': {
        \   'readonly': '%{&filetype=="help"?"READONLY":&readonly?"READONLY":""}',
        \   'modified': '%{&filetype=="help"?"":&modified?"MODIFIED":&modifiable?"":"-"}',
-       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():"NON VERSIONED"}'
+       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():"NON VERSIONED"}',
+       \   'syntastic': '%{SyntasticStatuslineFlag()}',
        \ },
        \ 'component_visible_condition': {
        \   'readonly': '(&filetype!="help"&& &readonly)',
        \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
+       \   'syntastic': '(&SyntasticStatuslineFlag)'
        \ },
        \ 'separator': { 'left': '', 'right': '' },
        \ 'subseparator': { 'left': '', 'right': '' }
        \ }
+
+" Jedi
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#popup_on_dot = 0
+
+" Syntastic
+let g:syntastic_python_checkers = ['pylint']
