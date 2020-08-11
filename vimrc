@@ -159,6 +159,7 @@ nnoremap <leader>dk :%!kubectl diff -f -<cr>:set ft=diff<cr>
 nnoremap <leader>fa zM
 nnoremap <leader>ufa zR
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
+nnoremap <leader>gbl :Gblame<cr>
 nnoremap <leader>tra :tabnew<cr>:r !trans --no-ansi <c-r>"<cr>
 nnoremap <leader>pdf :tabnew<cr>:r !lesspipe <c-r>"<cr>
 
