@@ -56,6 +56,7 @@ Plug 'kshenoy/vim-signature'
 
 """ appearance
 Plug 'altercation/vim-colors-solarized'
+Plug 'Yggdroot/indentLine'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 
 """ editing
