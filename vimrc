@@ -41,8 +41,9 @@ call plug#begin()
 
 """ navigation
 Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jlanzarotta/bufexplorer'
 
 """ git
 Plug 'tpope/vim-fugitive'
@@ -56,7 +57,6 @@ Plug 'kshenoy/vim-signature'
 
 """ appearance
 Plug 'altercation/vim-colors-solarized'
-Plug 'Yggdroot/indentLine'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 
 """ editing
@@ -74,6 +74,7 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'psycofdj/yaml-path', { 'for': 'yaml' }
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet'}
+Plug 'lepture/vim-jinja', { 'for': 'j2' }
 
 call plug#end()
 
@@ -105,10 +106,11 @@ nnoremap <leader>ce :!bash /home/wls/.vim/switch_execute_command.sh<cr>
 nnoremap <leader>ae :tabnew /home/wls/.vim/execute_commands.sh<cr>
 nnoremap <leader>ej :%!jq
 nnoremap <leader>ti :%!tidy -xml -i
+nnoremap <leader>jty :%!json2yaml<cr>
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
-nnoremap <leader>taf :tabnew<cr>:Files
+nnoremap <leader>taf :tabnew<cr>:Files<cr>
 nnoremap <leader>tan :tabnew<cr>
 nnoremap <leader>tae :tabnew<cr>:e
 nnoremap <leader>lcf :lcd %:p:h<cr>
@@ -142,14 +144,15 @@ nnoremap <leader>fts :set ft=sh<cr>
 nnoremap <leader>fty :set ft=yaml<cr>
 nnoremap <leader>ftc :set ft=csv<cr>
 nnoremap <leader>ftx :set ft=xml<cr>
+nnoremap <leader>ftji :set ft=jinja<cr>
 nnoremap <leader>qq :q!<cr>
 nnoremap <leader>ql :q<cr>
 nnoremap <leader>vl :vnew<cr>
 nnoremap <leader>vr :vnew<cr><c-w>r
 nnoremap <leader>ht :new<cr>
 nnoremap <leader>hb :new<cr><c-w>r
-nnoremap <leader>agr :Ag <c-r>"<cr>
-nnoremap <leader>ag :Ag
+nnoremap <leader>agr :r !ag <c-r>"<cr>
+nnoremap <leader>ag :r !ag
 nnoremap <leader>yap :Yamlpath<cr>
 nnoremap <leader>tw :set wrap!<cr>
 nnoremap <leader>trn :set rnu!<cr>
@@ -163,6 +166,13 @@ nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
 nnoremap <leader>gbl :Gblame<cr>
 nnoremap <leader>tra :tabnew<cr>:r !trans --no-ansi <c-r>"<cr>
 nnoremap <leader>pdf :tabnew<cr>:r !lesspipe <c-r>"<cr>
+
+nnoremap <leader>dg :diffget<cr>
+nnoremap <leader>dp :diffput<cr>
+
+nnoremap <leader>gld :tabnew<cr>igit log --pretty=format:'%h - %an - %ae - %aI - %s' --max-count=100<Esc>
+nnoremap <leader>gls :tabnew<cr>igit log --pretty=format:'%h - %aI - %s' --max-count=100<Esc>
+vnoremap <leader>gsd y:tabnew<cr>pIgit show <Esc>:set ft=diff<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev jjmx -Dcom.sun.management.jmxremote
@@ -186,7 +196,7 @@ noremap <C-n> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
 
 "" NERDTree Git
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "m",
     \ "Staged"    : "a",
     \ "Untracked" : "u",
@@ -198,7 +208,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : "i",
     \ "Unknown"   : "?"
     \ }
-let g:NERDTreeShowIgnoredStatus = 1
+let g:NERDTreeGitStatusShowIgnored = 1
 
 " LightLine
 let g:lightline = {
