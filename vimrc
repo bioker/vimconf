@@ -75,6 +75,8 @@ Plug 'psycofdj/yaml-path', { 'for': 'yaml' }
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet'}
 Plug 'lepture/vim-jinja', { 'for': 'j2' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
 call plug#end()
 
@@ -99,6 +101,8 @@ nnoremap <leader>ep :w !python3<cr>
 vnoremap <leader>ep :!python3<cr>
 nnoremap <leader>eb :%!bash<cr>
 vnoremap <leader>eb :!bash<cr>
+nnoremap <leader>ets :%!ts-node<cr>
+vnoremap <leader>ets :!ts-node<cr>
 vnoremap <leader>ec :!bash /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>ec :%!bash /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>sc :!cat /home/wls/.vim/current_command.sh<cr>
@@ -125,6 +129,11 @@ nnoremap <leader>enb :%!base64<cr>
 nnoremap <leader>deb :%!base64 --decode<cr>
 vnoremap <leader>enb :!base64<cr>
 vnoremap <leader>deb :!base64 --decode<cr>
+
+nnoremap <leader>ena :%!ansible-vault encrypt -<cr>
+nnoremap <leader>dea :%!ansible-vault decrypt -<cr>
+vnoremap <leader>ena :!ansible-vault encrypt -<cr>
+vnoremap <leader>dea :!ansible-vault decrypt -<cr>
 
 nnoremap <leader>has :%!sha256sum<cr>
 vnoremap <leader>has :!sha256sum<cr>
@@ -153,6 +162,8 @@ nnoremap <leader>ht :new<cr>
 nnoremap <leader>hb :new<cr><c-w>r
 nnoremap <leader>agr :r !ag <c-r>"<cr>
 nnoremap <leader>ag :r !ag
+nnoremap <leader>gre :r !ag <c-r>"<cr>
+nnoremap <leader>gr :r !grep
 nnoremap <leader>yap :Yamlpath<cr>
 nnoremap <leader>tw :set wrap!<cr>
 nnoremap <leader>trn :set rnu!<cr>
@@ -173,6 +184,11 @@ nnoremap <leader>dp :diffput<cr>
 nnoremap <leader>gld :tabnew<cr>igit log --pretty=format:'%h - %an - %ae - %aI - %s' --max-count=100<Esc>
 nnoremap <leader>gls :tabnew<cr>igit log --pretty=format:'%h - %aI - %s' --max-count=100<Esc>
 vnoremap <leader>gsd y:tabnew<cr>pIgit show <Esc>:set ft=diff<cr>
+
+nnoremap <leader>eis :set shellcmdflag=-ic<cr>
+nnoremap <leader>dis :set shellcmdflag=-c<cr>
+nnoremap <leader>buf :tabnew<cr>:BufExplorer<cr>
+nnoremap <leader>ct F<vf>yf>pF<a/<Esc>F>a
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev jjmx -Dcom.sun.management.jmxremote
