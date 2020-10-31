@@ -77,6 +77,7 @@ Plug 'google/vim-jsonnet', { 'for': 'jsonnet'}
 Plug 'lepture/vim-jinja', { 'for': 'j2' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -85,10 +86,10 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-let g:python_highlight_all = 1
-" Transparent background
+""" transparent background
 hi Normal guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
+hi LineNR guibg=NONE ctermbg=NONE
 
 noremap ; :!
 nnoremap <leader>evf :tabnew $MYVIMRC<cr>
@@ -183,7 +184,8 @@ nnoremap <leader>dp :diffput<cr>
 
 nnoremap <leader>gld :tabnew<cr>igit log --pretty=format:'%h - %an - %ae - %aI - %s' --max-count=100<Esc>
 nnoremap <leader>gls :tabnew<cr>igit log --pretty=format:'%h - %aI - %s' --max-count=100<Esc>
-vnoremap <leader>gsd y:tabnew<cr>pIgit show <Esc>:set ft=diff<cr>
+nnoremap <leader>gsd ^vey:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
+vnoremap <leader>gsd y:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
 
 nnoremap <leader>eis :set shellcmdflag=-ic<cr>
 nnoremap <leader>dis :set shellcmdflag=-c<cr>
