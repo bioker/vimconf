@@ -203,6 +203,7 @@ nnoremap <leader>ak :%!kubectl apply -f -<cr>
 nnoremap <leader>dk :%!kubectl diff -f -<cr>:set ft=diff<cr>
 
 " VCS
+nnoremap <leader>gc :BCommits<cr>
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
 nnoremap <leader>gbl :Gblame<cr>
 nnoremap <leader>gld :tabnew<cr>igit log --pretty=format:'%h - %an - %ae - %aI - %s' --max-count=100<Esc>
