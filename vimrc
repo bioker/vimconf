@@ -27,6 +27,7 @@ set updatetime=250
 set colorcolumn=120
 set omnifunc=syntaxcomplete#Complete
 set cursorline
+set cursorcolumn
 let mapleader=","
 
 " VimPlug
@@ -92,61 +93,89 @@ hi SignColumn guibg=NONE ctermbg=NONE
 hi LineNR guibg=NONE ctermbg=NONE
 
 noremap ; :!
+
+" Customize vim easily
 nnoremap <leader>evf :tabnew $MYVIMRC<cr>
 nnoremap <leader>evd :tabnew /home/wls/.vim<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>cap :let @+=expand("%:p")<cr>
+
+" Clipboard
 vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
+
+" Scripting
 nnoremap <leader>ep :w !python3<cr>
 vnoremap <leader>ep :!python3<cr>
 nnoremap <leader>eb :%!bash<cr>
 vnoremap <leader>eb :!bash<cr>
-nnoremap <leader>ets :%!ts-node<cr>
-vnoremap <leader>ets :!ts-node<cr>
 vnoremap <leader>ec :!bash /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>ec :%!bash /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>sc :!cat /home/wls/.vim/current_command.sh<cr>
 nnoremap <leader>ce :!bash /home/wls/.vim/switch_execute_command.sh<cr>
 nnoremap <leader>ae :tabnew /home/wls/.vim/execute_commands.sh<cr>
+
+" Work with data formats
 nnoremap <leader>ej :%!jq
 nnoremap <leader>ti :%!tidy -xml -i
 nnoremap <leader>jty :%!json2yaml<cr>
+
 nnoremap <leader>tp :set paste!<cr>
+
+" Navigation
+nnoremap <leader>qq :q!<cr>
+nnoremap <leader>ql :q<cr>
 nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
+nnoremap <leader>ag :Ag<cr>
 nnoremap <leader>taf :tabnew<cr>:Files<cr>
 nnoremap <leader>tan :tabnew<cr>
 nnoremap <leader>tae :tabnew<cr>:e
+nnoremap <leader>tag :tabnew<cr>:Ag<cr>
+nnoremap <leader>vl :vnew<cr>
+nnoremap <leader>vr :vnew<cr><c-w>r
+nnoremap <leader>ht :new<cr>
+nnoremap <leader>hb :new<cr><c-w>r
+
+" Current path
 nnoremap <leader>lcf :lcd %:p:h<cr>
 nnoremap <leader>gcf :cd %:p:h<cr>
+nnoremap <leader>cap :let @+=expand("%:p")<cr>
 
+" Crypto
 nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 nnoremap <leader>dec :%!gpg -q<cr>
 vnoremap <leader>enc :!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 vnoremap <leader>dec :!gpg -q<cr>
-
-nnoremap <leader>enb :%!base64<cr>
-nnoremap <leader>deb :%!base64 --decode<cr>
-vnoremap <leader>enb :!base64<cr>
-vnoremap <leader>deb :!base64 --decode<cr>
-
 nnoremap <leader>ena :%!ansible-vault encrypt -<cr>
 nnoremap <leader>dea :%!ansible-vault decrypt -<cr>
 vnoremap <leader>ena :!ansible-vault encrypt -<cr>
 vnoremap <leader>dea :!ansible-vault decrypt -<cr>
 
+" Encoding/Decoding
+nnoremap <leader>enb :%!base64<cr>
+nnoremap <leader>deb :%!base64 --decode<cr>
+vnoremap <leader>enb :!base64<cr>
+vnoremap <leader>deb :!base64 --decode<cr>
+
+" Math
+nnoremap <leader>bc :%!bc -l<cr>
+vnoremap <leader>bc :!bc -l<cr>
+
+" Hashing
 nnoremap <leader>has :%!sha256sum<cr>
 vnoremap <leader>has :!sha256sum<cr>
 
+" SSL
 nnoremap <leader>cft :%!openssl x509 -text -noout<cr>
 
+" Linters
 nnoremap <leader>syc :SyntasticCheck<cr>
 nnoremap <leader>syr :SyntasticReset<cr>
+
 nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=seconds<cr>
-nnoremap <leader>bc :%!bc -l<cr>
-vnoremap <leader>bc :!bc -l<cr>
+
+" FileTypes
 nnoremap <leader>ftq :set ft=sql<cr>
 nnoremap <leader>ftj :set ft=json<cr>
 nnoremap <leader>ftp :set ft=python<cr>
@@ -155,42 +184,33 @@ nnoremap <leader>fty :set ft=yaml<cr>
 nnoremap <leader>ftc :set ft=csv<cr>
 nnoremap <leader>ftx :set ft=xml<cr>
 nnoremap <leader>ftji :set ft=jinja<cr>
-nnoremap <leader>qq :q!<cr>
-nnoremap <leader>ql :q<cr>
-nnoremap <leader>vl :vnew<cr>
-nnoremap <leader>vr :vnew<cr><c-w>r
-nnoremap <leader>ht :new<cr>
-nnoremap <leader>hb :new<cr><c-w>r
-nnoremap <leader>agr :r !ag <c-r>"<cr>
-nnoremap <leader>ag :r !ag
-nnoremap <leader>gre :r !ag <c-r>"<cr>
-nnoremap <leader>gr :r !grep
-nnoremap <leader>yap :Yamlpath<cr>
+
+" Other
 nnoremap <leader>tw :set wrap!<cr>
 nnoremap <leader>trn :set rnu!<cr>
 nnoremap <leader>df :windo diffthis<cr>
+nnoremap <leader>fa zM
+nnoremap <leader>ufa zR
+nnoremap <leader>tra :tabnew<cr>:r !trans --no-ansi <c-r>"<cr>
+nnoremap <leader>pdf :tabnew<cr>:r !lesspipe <c-r>"<cr>
+nnoremap <leader>eis :set shellcmdflag=-ic<cr>
+nnoremap <leader>dis :set shellcmdflag=-c<cr>
+nnoremap <leader>ct F<vf>yf>pF<a/<Esc>F>a
+
+" Kubernetes
 vnoremap <leader>ak :!kubectl apply -f -<cr>
 nnoremap <leader>ak :%!kubectl apply -f -<cr>
 nnoremap <leader>dk :%!kubectl diff -f -<cr>:set ft=diff<cr>
-nnoremap <leader>fa zM
-nnoremap <leader>ufa zR
+
+" VCS
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
 nnoremap <leader>gbl :Gblame<cr>
-nnoremap <leader>tra :tabnew<cr>:r !trans --no-ansi <c-r>"<cr>
-nnoremap <leader>pdf :tabnew<cr>:r !lesspipe <c-r>"<cr>
-
-nnoremap <leader>dg :diffget<cr>
-nnoremap <leader>dp :diffput<cr>
-
 nnoremap <leader>gld :tabnew<cr>igit log --pretty=format:'%h - %an - %ae - %aI - %s' --max-count=100<Esc>
 nnoremap <leader>gls :tabnew<cr>igit log --pretty=format:'%h - %aI - %s' --max-count=100<Esc>
 nnoremap <leader>gsd ^vey:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
 vnoremap <leader>gsd y:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
-
-nnoremap <leader>eis :set shellcmdflag=-ic<cr>
-nnoremap <leader>dis :set shellcmdflag=-c<cr>
-nnoremap <leader>buf :tabnew<cr>:BufExplorer<cr>
-nnoremap <leader>ct F<vf>yf>pF<a/<Esc>F>a
+nnoremap <leader>dg :diffget<cr>
+nnoremap <leader>dp :diffput<cr>
 
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev jjmx -Dcom.sun.management.jmxremote
@@ -204,7 +224,7 @@ iabbrev aplf apply from: "${project.rootDir}/gradle/config/
 
 iabbrev kdev kubectl -n develop
 iabbrev ktest kubectl -n test
-iabbrev kbl kubectl
+
 iabbrev hlm helm template -f helm/values.${values}.yaml --namespace ${namespace} --version ${version} helm
 iabbrev hlm2 helm2 template -f helm/values.${values}.yaml --namespace ${namespace} --set-string version=${version} helm
 iabbrev hlmvars values=qa<cr>namespace=develop<cr>version=develop
@@ -233,7 +253,7 @@ let g:lightline = {
        \ 'colorscheme': 'wombat',
        \ 'active': {
        \   'left': [ [ 'mode', 'paste' ],
-       \             [ 'fugitive', 'readonly', 'absolutepath', 'modified' ] ],
+       \             [ 'fugitive', 'readonly', 'modified' ] ],
        \   'right': [ [ 'lineinfo' ],
        \              [ 'percent' ],
        \              [ 'syntastic', 'fileformat', 'fileencoding', 'filetype' ] ],
