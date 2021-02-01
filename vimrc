@@ -79,6 +79,7 @@ Plug 'lepture/vim-jinja', { 'for': 'j2' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'ap/vim-css-color'
+Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 
 call plug#end()
 
@@ -117,7 +118,7 @@ nnoremap <leader>ae :tabnew /home/wls/.vim/execute_commands.sh<cr>
 " Work with data formats
 nnoremap <leader>ej :%!jq
 nnoremap <leader>ti :%!tidy -xml -i
-nnoremap <leader>jty :%!json2yaml<cr>
+nnoremap <leader>yqp :%!yq r - -P<cr>
 
 nnoremap <leader>tp :set paste!<cr>
 
@@ -184,18 +185,19 @@ nnoremap <leader>fty :set ft=yaml<cr>
 nnoremap <leader>ftc :set ft=csv<cr>
 nnoremap <leader>ftx :set ft=xml<cr>
 nnoremap <leader>ftji :set ft=jinja<cr>
+nnoremap <leader>ftd :set ft=todo<cr>
 
 " Other
 nnoremap <leader>tw :set wrap!<cr>
 nnoremap <leader>trn :set rnu!<cr>
 nnoremap <leader>df :windo diffthis<cr>
-nnoremap <leader>fa zM
-nnoremap <leader>ufa zR
 nnoremap <leader>tra :tabnew<cr>:r !trans --no-ansi <c-r>"<cr>
 nnoremap <leader>pdf :tabnew<cr>:r !lesspipe <c-r>"<cr>
 nnoremap <leader>eis :set shellcmdflag=-ic<cr>
 nnoremap <leader>dis :set shellcmdflag=-c<cr>
 nnoremap <leader>ct F<vf>yf>pF<a/<Esc>F>a
+nnoremap <leader>se /<c-r>"<cr>
+nnoremap <leader>re :%s/<c-r>"/<c-r>"
 
 " Kubernetes
 vnoremap <leader>ak :!kubectl apply -f -<cr>
