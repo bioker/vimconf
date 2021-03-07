@@ -151,6 +151,8 @@ nnoremap <leader>ena :%!ansible-vault encrypt -<cr>
 nnoremap <leader>dea :%!ansible-vault decrypt -<cr>
 vnoremap <leader>ena :!ansible-vault encrypt -<cr>
 vnoremap <leader>dea :!ansible-vault decrypt -<cr>
+nnoremap <leader>sea :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --format=yaml<cr>
+vnoremap <leader>sea :!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --format=yaml<cr>
 
 " Encoding/Decoding
 nnoremap <leader>enb :%!base64<cr>
@@ -174,7 +176,7 @@ nnoremap <leader>syc :SyntasticCheck<cr>
 nnoremap <leader>syr :SyntasticReset<cr>
 
 nnoremap <leader>rw bvey:%s/<c-r>"/
-nnoremap <leader>now :r !date --iso-8601=seconds<cr>
+nnoremap <leader>now :r !date --iso-8601=ns<cr>
 
 " FileTypes
 nnoremap <leader>ftq :set ft=sql<cr>
@@ -283,3 +285,4 @@ let g:jedi#popup_on_dot = 0
 
 " Syntastic
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_javascript_checkers=['eslint']
