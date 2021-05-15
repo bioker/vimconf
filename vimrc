@@ -68,6 +68,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
 Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
@@ -78,6 +79,7 @@ Plug 'google/vim-jsonnet', { 'for': 'jsonnet'}
 Plug 'lepture/vim-jinja', { 'for': 'j2' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'burnettk/vim-angular', { 'for': 'javascript' }
 Plug 'ap/vim-css-color'
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 
@@ -128,6 +130,7 @@ nnoremap <leader>ql :q<cr>
 nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
 nnoremap <leader>ag :Ag<cr>
+nnoremap <leader>cag :r !ag -l <c-r>"<cr>
 nnoremap <leader>taf :tabnew<cr>:Files<cr>
 nnoremap <leader>tan :tabnew<cr>
 nnoremap <leader>tae :tabnew<cr>:e
@@ -179,15 +182,7 @@ nnoremap <leader>rw bvey:%s/<c-r>"/
 nnoremap <leader>now :r !date --iso-8601=ns<cr>
 
 " FileTypes
-nnoremap <leader>ftq :set ft=sql<cr>
-nnoremap <leader>ftj :set ft=json<cr>
-nnoremap <leader>ftp :set ft=python<cr>
-nnoremap <leader>fts :set ft=sh<cr>
-nnoremap <leader>fty :set ft=yaml<cr>
-nnoremap <leader>ftc :set ft=csv<cr>
-nnoremap <leader>ftx :set ft=xml<cr>
-nnoremap <leader>ftji :set ft=jinja<cr>
-nnoremap <leader>ftd :set ft=todo<cr>
+nnoremap <leader>ft :set ft=
 
 " Other
 nnoremap <leader>tw :set wrap!<cr>
@@ -200,11 +195,15 @@ nnoremap <leader>dis :set shellcmdflag=-c<cr>
 nnoremap <leader>ct F<vf>yf>pF<a/<Esc>F>a
 nnoremap <leader>se /<c-r>"<cr>
 nnoremap <leader>re :%s/<c-r>"/<c-r>"
+nnoremap <leader>cac :%CSVArrangeColumn<cr>
+nnoremap <leader>cuc :%CSVUnArrangeColumn<cr>
+nnoremap <leader>li :set list!<cr>
 
 " Kubernetes
-vnoremap <leader>ak :!kubectl apply -f -<cr>
-nnoremap <leader>ak :%!kubectl apply -f -<cr>
-nnoremap <leader>dk :%!kubectl diff -f -<cr>:set ft=diff<cr>
+nnoremap <leader>ka :%!kubectl apply -f -<cr>
+vnoremap <leader>ka :!kubectl apply -f -<cr>
+nnoremap <leader>kd :%!kubectl diff -f -<cr>:set ft=diff<cr>
+vnoremap <leader>kd :!kubectl diff -f -<cr>:set ft=diff<cr>
 
 " VCS
 nnoremap <leader>gc :BCommits<cr>
@@ -287,3 +286,6 @@ let g:jedi#popup_on_dot = 0
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_args = '--rcfile=/home/wls/.pylintrc'
 let g:syntastic_javascript_checkers=['eslint']
+
+" CSV
+let b:csv_arrange_align = 'l*'
