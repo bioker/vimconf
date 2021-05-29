@@ -131,6 +131,7 @@ nnoremap <leader>fi :Files<cr>
 nnoremap <leader>fp :Files
 nnoremap <leader>ag :Ag<cr>
 nnoremap <leader>cag :r !ag -l <c-r>"<cr>
+nnoremap <leader>fu vey:tabnew<cr>:r !ag -l <c-r>"<cr>
 nnoremap <leader>taf :tabnew<cr>:Files<cr>
 nnoremap <leader>tan :tabnew<cr>
 nnoremap <leader>tae :tabnew<cr>:e
@@ -198,6 +199,8 @@ nnoremap <leader>re :%s/<c-r>"/<c-r>"
 nnoremap <leader>cac :%CSVArrangeColumn<cr>
 nnoremap <leader>cuc :%CSVUnArrangeColumn<cr>
 nnoremap <leader>li :set list!<cr>
+nnoremap <leader>yl :w !yamllint -<cr>
+vnoremap <leader>yl :!yamllint -<cr>
 
 " Kubernetes
 nnoremap <leader>ka :%!kubectl apply -f -<cr>
