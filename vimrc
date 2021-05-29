@@ -132,6 +132,7 @@ nnoremap <leader>fp :Files
 nnoremap <leader>ag :Ag<cr>
 nnoremap <leader>cag :r !ag -l <c-r>"<cr>
 nnoremap <leader>fu vey:tabnew<cr>:r !ag -l <c-r>"<cr>
+vnoremap <leader>fu y:tabnew<cr>:r !ag -l <c-r>"<cr>
 nnoremap <leader>taf :tabnew<cr>:Files<cr>
 nnoremap <leader>tan :tabnew<cr>
 nnoremap <leader>tae :tabnew<cr>:e
