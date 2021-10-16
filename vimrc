@@ -90,10 +90,6 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-""" transparent background
-hi Normal guibg=NONE ctermbg=NONE
-hi SignColumn guibg=NONE ctermbg=NONE
-hi LineNR guibg=NONE ctermbg=NONE
 
 noremap ; :!
 
@@ -233,8 +229,7 @@ iabbrev aplf apply from: "${project.rootDir}/gradle/config/
 iabbrev kdev kubectl -n develop
 iabbrev ktest kubectl -n test
 
-iabbrev hlm helm template -f helm/values.${values}.yaml --namespace ${namespace} --version ${version} helm
-iabbrev hlm2 helm2 template -f helm/values.${values}.yaml --namespace ${namespace} --set-string version=${version} helm
+iabbrev hlm helm template -f helm/values.${values}.yaml --namespace ${namespace} --set-string version=${version} helm
 iabbrev hlmvars values=qa<cr>namespace=develop<cr>version=develop
 
 " NERDTree
