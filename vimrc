@@ -3,6 +3,7 @@ elseif has('python')
 endif
 
 " Vim
+set nowrap
 set nocompatible
 set nu
 set linebreak
@@ -59,6 +60,7 @@ Plug 'kshenoy/vim-signature'
 """ appearance
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
+Plug 'vim-scripts/nginx.vim'
 
 """ editing
 Plug 'scrooloose/nerdcommenter'
@@ -67,7 +69,6 @@ Plug 'valloric/MatchTagAlways'
 Plug 'vim-syntastic/syntastic'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
 Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
@@ -105,6 +106,8 @@ nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 " Scripting
 nnoremap <leader>ep :w !python3<cr>
 vnoremap <leader>ep :!python3<cr>
+nnoremap <leader>en :w !node<cr>
+vnoremap <leader>en :!node<cr>
 nnoremap <leader>eb :%!bash<cr>
 vnoremap <leader>eb :!bash<cr>
 vnoremap <leader>ec :!bash /home/wls/.vim/current_command.sh<cr>
@@ -152,8 +155,6 @@ nnoremap <leader>ena :%!ansible-vault encrypt -<cr>
 nnoremap <leader>dea :%!ansible-vault decrypt -<cr>
 vnoremap <leader>ena :!ansible-vault encrypt -<cr>
 vnoremap <leader>dea :!ansible-vault decrypt -<cr>
-nnoremap <leader>sea :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --format=yaml<cr>
-vnoremap <leader>sea :!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --format=yaml<cr>
 
 " Encoding/Decoding
 nnoremap <leader>enb :%!base64<cr>
@@ -204,6 +205,7 @@ nnoremap <leader>ka :%!kubectl apply -f -<cr>
 vnoremap <leader>ka :!kubectl apply -f -<cr>
 nnoremap <leader>kd :%!kubectl diff -f -<cr>:set ft=diff<cr>
 vnoremap <leader>kd :!kubectl diff -f -<cr>:set ft=diff<cr>
+nnoremap <leader>ks :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --scope cluster-wide --format=yaml -<cr>
 
 " VCS
 nnoremap <leader>gc :BCommits<cr>
@@ -216,6 +218,10 @@ vnoremap <leader>gsd y:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
 nnoremap <leader>dg :diffget<cr>
 nnoremap <leader>dp :diffput<cr>
 
+" Wireguard
+nnoremap <leader>wgk :r !wg genkey<cr>
+vnoremap <leader>wgp :!wg pubkey<cr>
+
 iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
 iabbrev jjmx -Dcom.sun.management.jmxremote
             \ -Dcom.sun.management.jmxremote.port=9010
@@ -225,9 +231,6 @@ iabbrev jjmx -Dcom.sun.management.jmxremote
             \ -Dcom.sun.management.jmxremote.local.only=false
             \ -Djava.rmi.server.hostname=localhost
 iabbrev aplf apply from: "${project.rootDir}/gradle/config/
-
-iabbrev kdev kubectl -n develop
-iabbrev ktest kubectl -n test
 
 iabbrev hlm helm template -f helm/values.${values}.yaml --namespace ${namespace} --set-string version=${version} helm
 iabbrev hlmvars values=qa<cr>namespace=develop<cr>version=develop
