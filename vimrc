@@ -121,9 +121,6 @@ nnoremap <leader>ae :tabnew /home/wls/.vim/execute_commands.sh<cr>
 " Work with data formats
 nnoremap <leader>ej :%!jq
 nnoremap <leader>ti :%!tidy -xml -i
-nnoremap <leader>yqp :%!yq r - -P<cr>
-
-nnoremap <leader>tp :set paste!<cr>
 
 " Navigation
 nnoremap <leader>qq :q!<cr>
@@ -153,10 +150,6 @@ nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiber
 nnoremap <leader>dec :%!gpg -q<cr>
 vnoremap <leader>enc :!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 vnoremap <leader>dec :!gpg -q<cr>
-nnoremap <leader>ena :%!ansible-vault encrypt -<cr>
-nnoremap <leader>dea :%!ansible-vault decrypt -<cr>
-vnoremap <leader>ena :!ansible-vault encrypt -<cr>
-vnoremap <leader>dea :!ansible-vault decrypt -<cr>
 
 " Encoding/Decoding
 nnoremap <leader>enb :%!base64<cr>
@@ -202,6 +195,7 @@ nnoremap <leader>li :set list!<cr>
 nnoremap <leader>yl :w !yamllint -<cr>
 vnoremap <leader>yl :!yamllint -<cr>
 nnoremap <leader>gr :%!grep 
+nnoremap <leader>tp :set paste!<cr>
 
 " Kubernetes
 nnoremap <leader>ka :%!kubectl apply -f -<cr>
