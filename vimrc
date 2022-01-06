@@ -67,6 +67,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways'
 Plug 'vim-syntastic/syntastic'
+Plug 'Joorem/vim-haproxy'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -83,6 +84,7 @@ Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'burnettk/vim-angular', { 'for': 'javascript' }
 Plug 'ap/vim-css-color'
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
@@ -199,13 +201,15 @@ nnoremap <leader>cuc :%CSVUnArrangeColumn<cr>
 nnoremap <leader>li :set list!<cr>
 nnoremap <leader>yl :w !yamllint -<cr>
 vnoremap <leader>yl :!yamllint -<cr>
+nnoremap <leader>gr :%!grep 
 
 " Kubernetes
 nnoremap <leader>ka :%!kubectl apply -f -<cr>
 vnoremap <leader>ka :!kubectl apply -f -<cr>
 nnoremap <leader>kd :%!kubectl diff -f -<cr>:set ft=diff<cr>
 vnoremap <leader>kd :!kubectl diff -f -<cr>:set ft=diff<cr>
-nnoremap <leader>ks :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --scope cluster-wide --format=yaml -<cr>
+nnoremap <leader>ksc :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --scope cluster-wide --format=yaml -<cr>
+nnoremap <leader>ksn :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --format=yaml -<cr>
 
 " VCS
 nnoremap <leader>gc :BCommits<cr>
