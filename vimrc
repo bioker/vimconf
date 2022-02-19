@@ -85,6 +85,8 @@ Plug 'burnettk/vim-angular', { 'for': 'javascript' }
 Plug 'ap/vim-css-color'
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'hashivim/vim-terraform'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
@@ -151,6 +153,11 @@ nnoremap <leader>dec :%!gpg -q<cr>
 vnoremap <leader>enc :!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 vnoremap <leader>dec :!gpg -q<cr>
 
+nnoremap <leader>ave :%!ansible-vault encrypt_string --encrypt-vault-id default --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
+nnoremap <leader>avd :%!ansible-vault decrypt --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
+vnoremap <leader>ave :!ansible-vault encrypt_string --encrypt-vault-id default --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
+vnoremap <leader>avd :!ansible-vault decrypt --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
+
 " Encoding/Decoding
 nnoremap <leader>enb :%!base64<cr>
 nnoremap <leader>deb :%!base64 --decode<cr>
@@ -196,6 +203,8 @@ nnoremap <leader>yl :w !yamllint -<cr>
 vnoremap <leader>yl :!yamllint -<cr>
 nnoremap <leader>gr :%!grep 
 nnoremap <leader>tp :set paste!<cr>
+nnoremap <leader>so :%!sort<cr>
+nnoremap <leader>uq :%!uniq<cr>
 
 " Kubernetes
 nnoremap <leader>ka :%!kubectl apply -f -<cr>
@@ -205,10 +214,14 @@ vnoremap <leader>kd :!kubectl diff -f -<cr>:set ft=diff<cr>
 nnoremap <leader>ksc :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --scope cluster-wide --format=yaml -<cr>
 nnoremap <leader>ksn :%!kubeseal --controller-name=sealed-secrets --controller-namespace=kube-system --format=yaml -<cr>
 
+" Terraform
+nnoremap <leader>tfp :tabnew<cr>:r !terraform plan -no-color<cr>
+nnoremap <leader>tfa :tabnew<cr>:r !terraform apply -no-color -auto-approve<cr>
+
 " VCS
 nnoremap <leader>gc :BCommits<cr>
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
-nnoremap <leader>gbl :Gblame<cr>
+nnoremap <leader>gbl :Git blame<cr>
 nnoremap <leader>gld :tabnew<cr>igit log --pretty=format:'%h - %an - %ae - %aI - %s' --max-count=100<Esc>
 nnoremap <leader>gls :tabnew<cr>igit log --pretty=format:'%h - %aI - %s' --max-count=100<Esc>
 nnoremap <leader>gsd ^vey:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
