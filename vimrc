@@ -30,6 +30,7 @@ set omnifunc=syntaxcomplete#Complete
 set cursorline
 set cursorcolumn
 let mapleader=","
+noremap ; :!
 
 " VimPlug
 
@@ -60,12 +61,12 @@ Plug 'kshenoy/vim-signature'
 """ appearance
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'vim-scripts/nginx.vim'
+Plug 'vim-scripts/nginx.vim', { 'for': 'nginx' }
 
 """ editing
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
-Plug 'valloric/MatchTagAlways'
+Plug 'valloric/MatchTagAlways', { 'for': 'html' }
 Plug 'vim-syntastic/syntastic'
 Plug 'Joorem/vim-haproxy'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
@@ -86,9 +87,77 @@ Plug 'ap/vim-css-color'
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'udalov/kotlin-vim'
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 
 call plug#end()
+
+" Golang specifics
+autocmd Filetype go let g:go_highlight_fields = 1
+autocmd Filetype go let g:go_highlight_functions = 1
+autocmd Filetype go let g:go_highlight_function_calls = 1
+autocmd Filetype go let g:go_highlight_operators = 1
+autocmd Filetype go let g:go_highlight_extra_types = 1
+autocmd Filetype go let g:go_auto_type_info = 1
+autocmd Filetype go let g:go_auto_sameids = 1
+autocmd Filetype go let g:go_def_mode='gopls'
+autocmd Filetype go let g:go_info_mode='gopls'
+
+autocmd Filetype go nnoremap <buffer> <leader>gr :GoRun %<cr>
+autocmd Filetype go setlocal noet ts=4 sw=4 sts=4
+
+" Java specifics
+autocmd Filetype java iabbrev <buffer> jmain public static void main(String[] args) {
+autocmd Filetype java iabbrev <buffer> jmainc public class Main { public static void main(String[] args) {} }
+autocmd Filetype java iabbrev <buffer> jsout System.out.println(
+
+" Javascript specifics
+autocmd Filetype javascript setlocal shiftwidth=2
+autocmd Filetype javascript setlocal tabstop=2
+
+" JSON specifics
+autocmd Filetype json setlocal shiftwidth=2
+autocmd Filetype json setlocal tabstop=2
+
+" Python specifics
+autocmd Filetype python nnoremap <buffer> <leader>af :%!autopep8 -<cr>
+autocmd Filetype python vnoremap <buffer> <leader>af :!autopep8 -<cr>
+
+autocmd Filetype python iabbrev <buffer> pmain if __main__ == "__main__":<cr>
+autocmd Filetype python iabbrev <buffer> ipdbreak import ipdb; ipdb.set_trace()
+
+autocmd Filetype python let python_highlight_all=1
+
+" SQL specifics
+autocmd Filetype sql vmap <buffer> <leader>dt yodescribe <c-r>"<esc>V,ec
+autocmd Filetype sql vmap <buffer> <leader>ct yoselect count(*) from <c-r>"<esc>V,ec
+autocmd Filetype sql vmap <buffer> <leader>saf yoselect * from <c-r>"<esc>V,ec
+autocmd Filetype sql nmap <buffer> <leader>st oshow tables<esc>v2b,ec
+autocmd Filetype sql nmap <buffer> <leader>sd oshow databases<esc>v2b,ec
+autocmd Filetype sql nnoremap <buffer> <leader>gc oselect <c-r>c, count(*) from <c-r>t group by <c-r>c<esc>
+
+autocmd Filetype sql iabbrev <buffer> selal select * from
+autocmd Filetype sql iabbrev <buffer> innj inner join
+autocmd Filetype sql iabbrev <buffer> desct describe table
+
+" Typescript specifics
+autocmd Filetype typescript setlocal shiftwidth=2
+autocmd Filetype typescript setlocal tabstop=2
+
+" XML specifics
+autocmd Filetype xml setlocal shiftwidth=2
+autocmd Filetype xml setlocal tabstop=2
+
+" YAML specifics
+autocmd Filetype yaml setlocal ts=2
+autocmd Filetype yaml setlocal sts=2
+autocmd Filetype yaml setlocal sw=2
+
+" ToDo specifics
+autocmd Filetype todo syn match undone /.*\-\ \[\ \].*/
+autocmd Filetype todo syn match done /.*\-\ \[x\].*/
+
+autocmd Filetype todo hi link undone Error
+autocmd Filetype todo hi link done Statement
 
 "" appearance
 syntax enable
@@ -96,7 +165,6 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-noremap ; :!
 
 " Customize vim easily
 nnoremap <leader>evf :tabnew $MYVIMRC<cr>
@@ -107,7 +175,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 vnoremap <leader>cp "+y<cr>
 nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 
-" Scripting
+" Execute
 nnoremap <leader>ep :w !python3<cr>
 vnoremap <leader>ep :!python3<cr>
 nnoremap <leader>en :w !node<cr>
@@ -147,16 +215,17 @@ nnoremap <leader>lcf :lcd %:p:h<cr>
 nnoremap <leader>gcf :cd %:p:h<cr>
 nnoremap <leader>cap :let @+=expand("%:p")<cr>
 
-" Crypto
+" GPG
 nnoremap <leader>enc :%!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 nnoremap <leader>dec :%!gpg -q<cr>
 vnoremap <leader>enc :!gpg -e --armor --trust-model always -r viktorvlasovsiberian@gmail.com<cr>
 vnoremap <leader>dec :!gpg -q<cr>
 
-nnoremap <leader>ave :%!ansible-vault encrypt_string --encrypt-vault-id default --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
-nnoremap <leader>avd :%!ansible-vault decrypt --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
-vnoremap <leader>ave :!ansible-vault encrypt_string --encrypt-vault-id default --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
-vnoremap <leader>avd :!ansible-vault decrypt --vault-password-file /home/wls/Resources/Secrets/ansible-vault-password.sh<cr>
+" Ansible Vault
+nnoremap <leader>ave :%!ansible-vault encrypt_string --encrypt-vault-id default<cr>
+nnoremap <leader>avd :%!ansible-vault decrypt<cr>
+vnoremap <leader>ave :!ansible-vault encrypt_string --encrypt-vault-id default<cr>
+vnoremap <leader>avd :!ansible-vault decrypt<cr>
 
 " Encoding/Decoding
 nnoremap <leader>enb :%!base64<cr>
@@ -233,24 +302,9 @@ nnoremap <leader>dp :diffput<cr>
 nnoremap <leader>wgk :r !wg genkey<cr>
 vnoremap <leader>wgp :!wg pubkey<cr>
 
-iabbrev jdb -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:9090
-iabbrev jjmx -Dcom.sun.management.jmxremote
-            \ -Dcom.sun.management.jmxremote.port=9010
-            \ -Dcom.sun.management.jmxremote.rmi.port=9010
-            \ -Dcom.sun.management.jmxremote.authenticate=false
-            \ -Dcom.sun.management.jmxremote.ssl=false
-            \ -Dcom.sun.management.jmxremote.local.only=false
-            \ -Djava.rmi.server.hostname=localhost
-iabbrev aplf apply from: "${project.rootDir}/gradle/config/
-
-iabbrev hlm helm template -f helm/values.${values}.yaml --namespace ${namespace} --set-string version=${version} helm
-iabbrev hlmvars values=qa<cr>namespace=develop<cr>version=develop
-
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
-
-"" NERDTree Git
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "m",
     \ "Staged"    : "a",
