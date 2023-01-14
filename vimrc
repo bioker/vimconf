@@ -26,9 +26,9 @@ set laststatus=2
 set listchars+=tab:>.
 set updatetime=250
 set colorcolumn=120
-set omnifunc=syntaxcomplete#Complete
 set cursorline
 set cursorcolumn
+set ttimeoutlen=5
 let mapleader=","
 noremap ; :!
 
@@ -46,7 +46,6 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'jlanzarotta/bufexplorer'
 
 """ git
 Plug 'tpope/vim-fugitive'
@@ -67,10 +66,8 @@ Plug 'vim-scripts/nginx.vim', { 'for': 'nginx' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'valloric/MatchTagAlways', { 'for': 'html' }
-Plug 'vim-syntastic/syntastic'
 Plug 'Joorem/vim-haproxy'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'thecodesmith/vim-groovy', { 'for': 'groovy' }
 Plug 'towolf/vim-helm', { 'for': ['yaml', 'yml'] }
@@ -80,77 +77,37 @@ Plug 'psycofdj/yaml-path', { 'for': 'yaml' }
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet'}
 Plug 'lepture/vim-jinja', { 'for': 'j2' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-Plug 'burnettk/vim-angular', { 'for': 'javascript' }
-Plug 'ap/vim-css-color'
 Plug 'pedrohdz/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'hashivim/vim-terraform'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 
 call plug#end()
 
 " Golang specifics
-autocmd Filetype go let g:go_highlight_fields = 1
-autocmd Filetype go let g:go_highlight_functions = 1
-autocmd Filetype go let g:go_highlight_function_calls = 1
-autocmd Filetype go let g:go_highlight_operators = 1
-autocmd Filetype go let g:go_highlight_extra_types = 1
-autocmd Filetype go let g:go_auto_type_info = 1
-autocmd Filetype go let g:go_auto_sameids = 1
-autocmd Filetype go let g:go_def_mode='gopls'
-autocmd Filetype go let g:go_info_mode='gopls'
-
-autocmd Filetype go nnoremap <buffer> <leader>gr :GoRun %<cr>
 autocmd Filetype go setlocal noet ts=4 sw=4 sts=4
 
 " Java specifics
-autocmd Filetype java iabbrev <buffer> jmain public static void main(String[] args) {
-autocmd Filetype java iabbrev <buffer> jmainc public class Main { public static void main(String[] args) {} }
-autocmd Filetype java iabbrev <buffer> jsout System.out.println(
+autocmd Filetype java setlocal noet ts=4 sw=4 sts=4
 
 " Javascript specifics
-autocmd Filetype javascript setlocal shiftwidth=2
-autocmd Filetype javascript setlocal tabstop=2
+autocmd Filetype javascript setlocal noet ts=2 sw=2 sts=2
 
 " JSON specifics
-autocmd Filetype json setlocal shiftwidth=2
-autocmd Filetype json setlocal tabstop=2
+autocmd Filetype json setlocal noet ts=2 sw=2 sts=2
 
 " Python specifics
-autocmd Filetype python nnoremap <buffer> <leader>af :%!autopep8 -<cr>
-autocmd Filetype python vnoremap <buffer> <leader>af :!autopep8 -<cr>
-
-autocmd Filetype python iabbrev <buffer> pmain if __main__ == "__main__":<cr>
-autocmd Filetype python iabbrev <buffer> ipdbreak import ipdb; ipdb.set_trace()
-
 autocmd Filetype python let python_highlight_all=1
 
-" SQL specifics
-autocmd Filetype sql vmap <buffer> <leader>dt yodescribe <c-r>"<esc>V,ec
-autocmd Filetype sql vmap <buffer> <leader>ct yoselect count(*) from <c-r>"<esc>V,ec
-autocmd Filetype sql vmap <buffer> <leader>saf yoselect * from <c-r>"<esc>V,ec
-autocmd Filetype sql nmap <buffer> <leader>st oshow tables<esc>v2b,ec
-autocmd Filetype sql nmap <buffer> <leader>sd oshow databases<esc>v2b,ec
-autocmd Filetype sql nnoremap <buffer> <leader>gc oselect <c-r>c, count(*) from <c-r>t group by <c-r>c<esc>
-
-autocmd Filetype sql iabbrev <buffer> selal select * from
-autocmd Filetype sql iabbrev <buffer> innj inner join
-autocmd Filetype sql iabbrev <buffer> desct describe table
-
-" Typescript specifics
-autocmd Filetype typescript setlocal shiftwidth=2
-autocmd Filetype typescript setlocal tabstop=2
-
 " XML specifics
-autocmd Filetype xml setlocal shiftwidth=2
-autocmd Filetype xml setlocal tabstop=2
+autocmd Filetype xml setlocal noet ts=2 sw=2 sts=2
 
 " YAML specifics
-autocmd Filetype yaml setlocal ts=2
-autocmd Filetype yaml setlocal sts=2
-autocmd Filetype yaml setlocal sw=2
+autocmd Filetype yaml setlocal noet ts=2 sw=2 sts=2
+autocmd Filetype yaml nnoremap <leader>yl :w !yamllint -<cr>
+autocmd Filetype yaml vnoremap <leader>yl :!yamllint -<cr>
+
+" CSV specifics
+autocmd Filetype csv nnoremap <leader>cac :%CSVArrangeColumn<cr>
+autocmd Filetype csv nnoremap <leader>cuc :%CSVUnArrangeColumn<cr>
 
 " ToDo specifics
 autocmd Filetype todo syn match undone /.*\-\ \[\ \].*/
@@ -162,6 +119,7 @@ autocmd Filetype todo hi link done Statement
 "" appearance
 syntax enable
 set background=dark
+"set background=light
 let g:solarized_termcolors=256
 colorscheme solarized
 
@@ -237,24 +195,12 @@ vnoremap <leader>deb :!base64 --decode<cr>
 nnoremap <leader>bc :%!bc -l<cr>
 vnoremap <leader>bc :!bc -l<cr>
 
-" Hashing
-nnoremap <leader>has :%!sha256sum<cr>
-vnoremap <leader>has :!sha256sum<cr>
-
-" SSL
-nnoremap <leader>cft :%!openssl x509 -text -noout<cr>
-
-" Linters
-nnoremap <leader>syc :SyntasticCheck<cr>
-nnoremap <leader>syr :SyntasticReset<cr>
-
-nnoremap <leader>rw bvey:%s/<c-r>"/
-nnoremap <leader>now :r !date --iso-8601=ns<cr>
-
 " FileTypes
 nnoremap <leader>ft :set ft=
 
 " Other
+nnoremap <leader>rw bvey:%s/<c-r>"/
+nnoremap <leader>now :r !date --iso-8601=ns<cr>
 nnoremap <leader>tw :set wrap!<cr>
 nnoremap <leader>trn :set rnu!<cr>
 nnoremap <leader>df :windo diffthis<cr>
@@ -265,11 +211,7 @@ nnoremap <leader>dis :set shellcmdflag=-c<cr>
 nnoremap <leader>ct F<vf>yf>pF<a/<Esc>F>a
 nnoremap <leader>se /<c-r>"<cr>
 nnoremap <leader>re :%s/<c-r>"/<c-r>"
-nnoremap <leader>cac :%CSVArrangeColumn<cr>
-nnoremap <leader>cuc :%CSVUnArrangeColumn<cr>
 nnoremap <leader>li :set list!<cr>
-nnoremap <leader>yl :w !yamllint -<cr>
-vnoremap <leader>yl :!yamllint -<cr>
 nnoremap <leader>gr :%!grep 
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>so :%!sort<cr>
@@ -286,6 +228,7 @@ nnoremap <leader>ksn :%!kubeseal --controller-name=sealed-secrets --controller-n
 " Terraform
 nnoremap <leader>tfp :tabnew<cr>:r !terraform plan -no-color<cr>
 nnoremap <leader>tfa :tabnew<cr>:r !terraform apply -no-color -auto-approve<cr>
+nnoremap <leader>tff :%!terraform fmt -<cr>
 
 " VCS
 nnoremap <leader>gc :BCommits<cr>
@@ -327,32 +270,21 @@ let g:lightline = {
        \             [ 'fugitive', 'readonly', 'modified' ] ],
        \   'right': [ [ 'lineinfo' ],
        \              [ 'percent' ],
-       \              [ 'syntastic', 'fileformat', 'fileencoding', 'filetype' ] ],
+       \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
        \ },
        \ 'component': {
        \   'readonly': '%{&filetype=="help"?"READONLY":&readonly?"READONLY":""}',
        \   'modified': '%{&filetype=="help"?"":&modified?"MODIFIED":&modifiable?"":"-"}',
        \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():"NON VERSIONED"}',
-       \   'syntastic': '%{SyntasticStatuslineFlag()}',
        \ },
        \ 'component_visible_condition': {
        \   'readonly': '(&filetype!="help"&& &readonly)',
        \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
-       \   'syntastic': '(&SyntasticStatuslineFlag)'
        \ },
        \ 'separator': { 'left': '', 'right': '' },
        \ 'subseparator': { 'left': '', 'right': '' }
        \ }
-
-" Jedi
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#popup_on_dot = 0
-
-" Syntastic
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_python_pylint_args = '--rcfile=/home/wls/.pylintrc'
-let g:syntastic_javascript_checkers=['eslint']
 
 " CSV
 let b:csv_arrange_align = 'l*'
