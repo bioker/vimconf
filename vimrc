@@ -83,25 +83,25 @@ Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " Golang specifics
-autocmd Filetype go setlocal noet ts=4 sw=4 sts=4
+autocmd Filetype go setlocal et ts=4 sw=4 sts=4
 
 " Java specifics
-autocmd Filetype java setlocal noet ts=4 sw=4 sts=4
+autocmd Filetype java setlocal et ts=4 sw=4 sts=4
 
 " Javascript specifics
-autocmd Filetype javascript setlocal noet ts=2 sw=2 sts=2
+autocmd Filetype javascript setlocal et ts=2 sw=2 sts=2
 
 " JSON specifics
-autocmd Filetype json setlocal noet ts=2 sw=2 sts=2
+autocmd Filetype json setlocal et ts=2 sw=2 sts=2
 
 " Python specifics
 autocmd Filetype python let python_highlight_all=1
 
 " XML specifics
-autocmd Filetype xml setlocal noet ts=2 sw=2 sts=2
+autocmd Filetype xml setlocal et ts=2 sw=2 sts=2
 
 " YAML specifics
-autocmd Filetype yaml setlocal noet ts=2 sw=2 sts=2
+autocmd Filetype yaml setlocal et ts=2 sw=2 sts=2
 autocmd Filetype yaml nnoremap <leader>yl :w !yamllint -<cr>
 autocmd Filetype yaml vnoremap <leader>yl :!yamllint -<cr>
 
@@ -231,6 +231,7 @@ nnoremap <leader>tfa :tabnew<cr>:r !terraform apply -no-color -auto-approve<cr>
 nnoremap <leader>tff :%!terraform fmt -<cr>
 
 " VCS
+nnoremap <leader>ggp :!git pull<cr>
 nnoremap <leader>gc :BCommits<cr>
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
 nnoremap <leader>gbl :Git blame<cr>
