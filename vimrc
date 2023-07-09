@@ -235,15 +235,13 @@ nnoremap <leader>ggp :!git pull<cr>
 nnoremap <leader>gc :BCommits<cr>
 nnoremap <leader>cdf :tabnew<cr>:r !git diff HEAD<cr>:set ft=diff<cr>
 nnoremap <leader>gbl :Git blame<cr>
-nnoremap <leader>gld :tabnew<cr>igit log --pretty=format:'%h - %an - %ae - %aI - %s' --max-count=100<Esc>
-nnoremap <leader>gls :tabnew<cr>igit log --pretty=format:'%h - %aI - %s' --max-count=100<Esc>
 nnoremap <leader>gsd ^vey:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
 vnoremap <leader>gsd y:tabnew<cr>pIgit show <Esc>:%!bash<cr>:set ft=diff<cr>
 nnoremap <leader>dg :diffget<cr>
 nnoremap <leader>dp :diffput<cr>
 
 " Wireguard
-nnoremap <leader>wgk :r !wg genkey<cr>
+nnoremap <leader>wgk :r !wg genkey 2>/dev/null<cr>
 vnoremap <leader>wgp :!wg pubkey<cr>
 
 " NERDTree
