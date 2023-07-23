@@ -136,7 +136,7 @@ nnoremap <leader>cp :w !xclip -selection c<cr><cr>
 " Execute
 nnoremap <leader>ep :w !python3<cr>
 vnoremap <leader>ep :!python3<cr>
-nnoremap <leader>en :w !node<cr>
+nnoremap <leader>en :%!node --input-type=module<cr>
 vnoremap <leader>en :!node<cr>
 nnoremap <leader>eb :%!bash<cr>
 vnoremap <leader>eb :!bash<cr>
@@ -148,7 +148,7 @@ nnoremap <leader>ae :tabnew /home/wls/.vim/execute_commands.sh<cr>
 
 " Work with data formats
 nnoremap <leader>ej :%!jq
-nnoremap <leader>ti :%!tidy -xml -i
+nnoremap <leader>ti :%!tidy -xml -i -q
 
 " Navigation
 nnoremap <leader>qq :q!<cr>
