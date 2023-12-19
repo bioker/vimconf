@@ -90,6 +90,7 @@ autocmd Filetype java setlocal et ts=4 sw=4 sts=4
 
 " Javascript specifics
 autocmd Filetype javascript setlocal et ts=2 sw=2 sts=2
+autocmd Filetype javascriptreact setlocal et ts=2 sw=2 sts=2
 
 " JSON specifics
 autocmd Filetype json setlocal et ts=2 sw=2 sts=2
@@ -216,6 +217,7 @@ nnoremap <leader>gr :%!grep
 nnoremap <leader>tp :set paste!<cr>
 nnoremap <leader>so :%!sort<cr>
 nnoremap <leader>uq :%!uniq<cr>
+vnoremap <leader>p "_dP
 
 " Kubernetes
 nnoremap <leader>ka :%!kubectl apply -f -<cr>
